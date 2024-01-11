@@ -19,7 +19,8 @@ class Map:
         map_data = pyscroll.data.TiledMapData(self.tmx_data)
         self.map_layer = pyscroll.BufferedRenderer(map_data, self.screen.get_size())
         self.map_layer.zoom = 3
-        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=10)
+        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=5)
+        
 
     def add_player(self, player):
         self.group.add(player)

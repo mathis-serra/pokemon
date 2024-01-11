@@ -29,4 +29,3 @@ class Game:
                 self.keylistener.add_key(event.key)
             elif event.type == pygame.KEYUP:
                 self.keylistener.remove_key(event.key)
-
