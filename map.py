@@ -1,36 +1,31 @@
 import pygame
 import pytmx
+import pyscroll
 
-pygame.init()
-largeur_fenetre = 800
-hauteur_fenetre = 600
-fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
-pygame.display.set_caption("Affichage de la carte Tiled avec Pygame")
+from screen import Screen
 
-# Charger la map Tiled
-carte = pytmx.load_pygame("Data/Maps/map0.tmx")
+class Map:
+    def __init__(self, screen: Screen):
+        self.screen = screen
+        self.tmx_data = None
+        self.map_layer = None
+        self.group = None
 
-def afficher_carte():
-    for layer in carte.visible_layers:
-        if isinstance(layer, pytmx.TiledTileLayer):
-            # Traitement des tuiles
-            for x, y, gid in layer:
-                tile = carte.get_tile_image_by_gid(gid)
-                if tile:
-                    fenetre.blit(tile, (x * carte.tilewidth, y * carte.tileheight))
-        elif isinstance(layer, pytmx.TiledObjectGroup):
-            # Traitement des objets
-            for obj in layer:
-                if obj.image:
-                    fenetre.blit(obj.image, (obj.x, obj.y))
+        self.switch_map("map0")
+        self.player = None
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
-    fenetre.fill((255, 255, 255))
-    afficher_carte()
-    pygame.display.flip()
+    def switch_map(self, map: str):
+        self.tmx_data = pytmx.load_pygame(f"Data/Maps/map0.tmx")
+        map_data = pyscroll.data.TiledMapData(self.tmx_data)
+        self.map_layer = pyscroll.BufferedRenderer(map_data, self.screen.get_size())
+        self.map_layer.zoom = 3
+        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=10)
 
-pygame.quit()
+    def add_player(self, player):
+        self.group.add(player)
+        self.player = player
+
+    def update(self):
+        self.group.update()
+        self.group.center(self.player.rect.center)
+        self.group.draw(self.screen.get_display())
