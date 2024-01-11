@@ -11,21 +11,19 @@ fenetre=pygame.display.set_mode((largeur_fenetre,hauteur_fenetre))
 background=pygame.image.load("Data/Combat/Combat_Sprite/Background/Forest_Background.png")
 background=pygame.transform.scale(background,(largeur_fenetre,hauteur_fenetre-200))
 text_img=pygame.image.load("Data/Combat/Combat_Sprite/CombatUi/Bottom_message_Box.png")
-text_img=pygame.transform.scale(text_img,(largeur_fenetre,hauteur_fenetre-200))
+text_img=pygame.transform.scale(text_img,(largeur_fenetre,hauteur_fenetre-400))
 pygame.display.set_caption("Pokemon Fight")
-
 
 #Son
 pygame.mixer.music.load("song/WildFight.mp3")
 pygame.mixer.music.set_volume(1)
 pygame.mixer.music.play(1) 
 
-
 #Variables
 grey="#8c8c8c"
 black="#000000"
 green="#a0e8b1"
-
+white="#ffffff"
 
 #Running Game et Event
 start_time=time.time()
@@ -44,8 +42,8 @@ while running:
         else:
             fenetre.fill(black)
     else:
-        fenetre.blit(background, (0, 0))
         fenetre.blit(text_img, (0, 400))
+        fenetre.blit(background, (0, 0))
         
     pygame.display.flip()
 
