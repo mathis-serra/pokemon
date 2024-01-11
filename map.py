@@ -7,7 +7,7 @@ hauteur_fenetre = 600
 fenetre = pygame.display.set_mode((largeur_fenetre, hauteur_fenetre))
 pygame.display.set_caption("Affichage de la carte Tiled avec Pygame")
 
-# Charger la carte Tiled
+# Charger la map Tiled
 carte = pytmx.load_pygame("Data/Maps/map0.tmx")
 
 def afficher_carte():
