@@ -2,46 +2,68 @@ import pygame
 import os
 import cv2
 from Screen import Screen
+import time
 pygame.init()
-
-# class Screen:
-#     def __init__(self):
-#         self.size = (1280, 7200)
-    
-#     def get_size(self):
-#         return self.size
 
 screen = Screen()
 
 chemin_video = os.path.join('Data/Intro/Pokemon_intro.mp4')
 cap = cv2.VideoCapture(chemin_video)
 
-ret, frame = cap.read()
-if not ret:
-    # Return to the beginning
-    cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+# Check if the video file was opened successfully
+if not cap.isOpened():
+    print("Error opening video file")
+    pygame.quit()
+    exit()
 
-# Resize the image to the size of the Pygame window
-frame = cv2.resize(frame, (1280, 720))
-frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+# Get the video's frame width and height
+frame_width = 950  
+frame_height = 720  
 
-# Convert the OpenCV image to a Pygame surface
-frame = pygame.surfarray.make_surface(frame)
-
-# Create a Pygame window
-window = pygame.display.set_mode(screen.get_size())
+# Create a Pygame window with the same size as the video frame
+window = pygame.display.set_mode((1280, 880))  
 pygame.display.set_caption("pokemon")
 
-# Blit the frame onto the window
-window.blit(frame, (0, 0))
-pygame.display.flip()
+# Read and display each frame of the video
+while True:
+    ret, frame = cap.read()
+    if not ret:
+        # If the video has ended, break out of the loop
+        break
+    
+    frame = cv2.flip(frame, 1)  # Flip the frame horizontally (Y-axe)
 
-# Wait for the user to close the window
-running = True
-while running:
+    frame = cv2.rotate(frame, cv2.ROTATE_90_COUNTERCLOCKWISE)
+    
+    
+    # Resize the frame to fit the Pygame window
+    frame = cv2.resize(frame, (frame_width, frame_height))
+    frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
+
+    # Convert the OpenCV image to a Pygame surface
+    frame = pygame.surfarray.make_surface(frame)
+
+    # Calculate the position to center the frame on the window
+    frame_x = (1280 - frame.get_width()) // 2  
+    frame_y = (880 - frame.get_height()) // 2  
+
+    # Blit the frame onto the window at the center position
+    window.blit(frame, (frame_x, frame_y))
+
+    # Update the display
+    pygame.display.flip()
+
+    # Check for the user closing the window
     for event in pygame.event.get():
-        if event.type == pygame.MOUSEBUTTONDOWN:
-            running = False
+        if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
+           
+            pygame.fadeout(5000)  
+            pygame.quit()
+            exit()
+            
+        
+
+    # Decrease the delay between frames
+    time.sleep(0.02)  # Updated delay
 
 cap.release()
-pygame.quit()
