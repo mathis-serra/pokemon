@@ -96,7 +96,7 @@ class Combat:
             print(f"{pokemon['name']['french']} est déjà dans votre Pokédex.")
         
 
-combat_test = Combat(200, 123)
+combat_test = Combat(2, 123)
 
 while combat_test.combat_en_cours:
     combat_test.effectuer_tour()

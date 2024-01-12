@@ -1,5 +1,6 @@
 import pygame
 import time
+from Dialogue_game import InterfaceFight
 
 pygame.init()
 pygame.mixer.init()
@@ -24,6 +25,8 @@ grey="#8c8c8c"
 black="#000000"
 green="#a0e8b1"
 white="#ffffff"
+rectangle = InterfaceFight.deroulement()
+
 
 #Running Game et Event
 start_time=time.time()
@@ -44,6 +47,8 @@ while running:
     else:
         fenetre.blit(text_img, (0, 400))
         fenetre.blit(background, (0, 0))
+        rectangle.display_rect(fenetre)
+
         
     pygame.display.flip()
 
