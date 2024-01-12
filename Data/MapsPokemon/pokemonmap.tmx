@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="20" nextobjectid="1">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="21" nextobjectid="3">
  <tileset firstgid="1" source="tileset_pokemon_sdk.tsx"/>
- <tileset firstgid="4257" source="../pokemon/Data/Maps/untitled-removebg-preview (1).tsx"/>
+ <tileset firstgid="4257" source="untitled-removebg-preview (1).tsx"/>
  <layer id="1" name="backgound" width="50" height="50">
   <data encoding="csv">
 1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,
@@ -812,4 +812,12 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0
 </data>
  </layer>
+ <objectgroup id="20" name="Text">
+  <object id="1" x="628.337" y="370.141" width="105" height="22.75">
+   <text fontfamily="Segoe UI" wrap="1" color="#55aa7f" bold="1" italic="1">Gojo Team</text>
+  </object>
+  <object id="2" x="628.409" y="369.318" width="105" height="17">
+   <text fontfamily="Segoe UI" wrap="1" bold="1" italic="1">Gojo Team</text>
+  </object>
+ </objectgroup>
 </map>
