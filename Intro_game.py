@@ -12,7 +12,7 @@ cap = cv2.VideoCapture(chemin_video)
 
 # Check if the video file was opened successfully
 if not cap.isOpened():
-    print("Error opening video file")
+    print("Error opening video file. Try installing OpenCV")
     pygame.quit()
     exit()
 
@@ -24,12 +24,17 @@ frame_height = 720
 window = pygame.display.set_mode((1280, 880))  
 pygame.display.set_caption("pokemon")
 
+# Load and play the music
+pygame.mixer.music.load('Data/Intro/pokemon_sound.mp3')
+pygame.mixer.music.play(-1)  # -1 means play the music on loop
+
 # Read and display each frame of the video
 while True:
     ret, frame = cap.read()
     if not ret:
         # If the video has ended, break out of the loop
-        break
+        cap.set(cv2.CAP_PROP_POS_FRAMES, 0)
+        continue
     
     frame = cv2.flip(frame, 1)  # Flip the frame horizontally (Y-axe)
 
@@ -64,6 +69,6 @@ while True:
         
 
     # Decrease the delay between frames
-    time.sleep(0.02)  # Updated delay
+    time.sleep(0.022)  
 
 cap.release()
