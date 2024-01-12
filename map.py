@@ -11,11 +11,11 @@ class Map:
         self.map_layer = None
         self.group = None
 
-        self.switch_map("map0")
+        self.switch_map("pokemonmap")
         self.player = None
 
     def switch_map(self, map: str):
-        self.tmx_data = pytmx.load_pygame(f"Data/Maps/map0.tmx")
+        self.tmx_data = pytmx.load_pygame(f"Data/Maps Pokemon/pokemonmap.tmx")
         map_data = pyscroll.data.TiledMapData(self.tmx_data)
         self.map_layer = pyscroll.BufferedRenderer(map_data, self.screen.get_size())
         self.map_layer.zoom = 3
