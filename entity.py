@@ -1,21 +1,22 @@
 import pygame
-
 from tool import Tool
 from keylistener import KeyListener
 
 class Entity(pygame.sprite.Sprite):
-    def __init__(self, keylistener: KeyListener):
+    def __init__(self, keylistener):
         super().__init__()
         self.keylistener = keylistener
         self.spritesheet = pygame.image.load("Data/Maps/assets/sprite/hero_01_red_m_walk.png")
         self.image = Tool.split_image(self.spritesheet, 0, 0, 24, 32)
         self.position = [0, 0]
-        self.rect: pygame.Rect = pygame.Rect(0, 0, 16, 32)
+        self.rect = pygame.Rect(0, 0, 16, 32)
         self.all_images = self.get_all_images()
         self.index_image = 0
+        self.can_move = True
 
     def update(self):
-        self.check_move()
+        if self.can_move:
+            self.check_move()
         self.rect.topleft = self.position
 
     def check_move(self):
@@ -55,3 +56,9 @@ class Entity(pygame.sprite.Sprite):
             for j, key in enumerate(all_images.keys()):
                 all_images[key].append(Tool.split_image(self.spritesheet, i * 24, j*32, 24, 32))
         return all_images
+
+    def stop_movement(self):
+        self.can_move = False
+
+    def allow_movement(self):
+        self.can_move = True
