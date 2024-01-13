@@ -3,9 +3,10 @@ from tool import Tool
 from keylistener import KeyListener
 
 class Entity(pygame.sprite.Sprite):
-    def __init__(self, keylistener):
+    def __init__(self, keylistener, collision_data):
         super().__init__()
         self.keylistener = keylistener
+        self.collision_data = collision_data
         self.spritesheet = pygame.image.load("Data/Maps/assets/sprite/hero_01_red_m_walk.png")
         self.image = Tool.split_image(self.spritesheet, 0, 0, 24, 32)
         self.position = [0, 0]
@@ -17,6 +18,7 @@ class Entity(pygame.sprite.Sprite):
     def update(self):
         if self.can_move:
             self.check_move()
+            self.handle_collision()
         self.rect.topleft = self.position
 
     def check_move(self):
@@ -62,3 +64,17 @@ class Entity(pygame.sprite.Sprite):
 
     def allow_movement(self):
         self.can_move = True
+
+    def handle_collision(self):
+        player_tile_x = int(self.position[0] / 24)  # Adapté à la taille de votre tuile
+        player_tile_y = int(self.position[1] / 32)  # Adapté à la taille de votre tuile
+
+        # Obtenir les dimensions du calque
+        map_width = self.collision_data.width
+        map_height = self.collision_data.height
+
+        # Vérifier les collisions
+        if (player_tile_x, player_tile_y) in self.collision_data:
+            # Le joueur est dans une zone de collision, ajuster la position pour éviter la collision
+            self.position[0] = max(0, min((map_width - 1) * 24, self.position[0]))  # Adapté à la taille de votre tuile
+            self.position[1] = max(0, min((map_height - 1) * 32, self.position[1]))  # Adapté à la taille de votre tuile
