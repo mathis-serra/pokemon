@@ -9,6 +9,12 @@ class Map:
         self.tmx_data = None
         self.map_layer = None
         self.collision_data = None
+        self.house_collision_data = None
+        self.lamp_collision_data = None
+        self.mountain_collision_data = None
+        self.tree_collision_data = None 
+        self.beach_collision_data = None
+        self.fence_collision_data = None 
         self.group = None
         self.player = None
 
@@ -21,18 +27,36 @@ class Map:
         self.map_layer.zoom = 3
         self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=5)
 
-        collision_layer = None
-        for layer in self.tmx_data.visible_layers:
-            if layer.name == "pokemon statut":
-                collision_layer = layer
-                break
+        # Ajouter les nouveaux calques à la liste des calques de collision
+        collision_layers = ["pokemon statut", "house", "Lampe and Buisson/mini abre, others",
+                            "Montagne", "three", "Plage", "Barriere"]
 
-        collision_data = set()
-        for x, y, gid in collision_layer:
-            if gid:
-                collision_data.add((x, y))
+        for collision_name in collision_layers:
+            collision_layer = None
+            for layer in self.tmx_data.visible_layers:
+                if layer.name == collision_name:
+                    collision_layer = layer
+                    break
 
-        self.collision_data = collision_data
+            collision_data = set()
+            for x, y, gid in collision_layer:
+                if gid:
+                    collision_data.add((x, y))
+
+            if collision_name == "pokemon statut":
+                self.collision_data = collision_data
+            elif collision_name == "house":
+                self.house_collision_data = collision_data
+            elif collision_name == "Lampe and Buisson/mini abre, others":
+                self.lamp_collision_data = collision_data
+            elif collision_name == "Montagne":
+                self.mountain_collision_data = collision_data
+            elif collision_name == "three":
+                self.tree_collision_data = collision_data
+            elif collision_name == "Plage":
+                self.beach_collision_data = collision_data
+            elif collision_name == "Barriere":
+                self.fence_collision_data = collision_data
 
     def add_player(self, player):
         self.group.add(player)
@@ -45,9 +69,15 @@ class Map:
         player_tile_x = int(player_rect.center[0] / self.tmx_data.tilewidth)
         player_tile_y = int(player_rect.center[1] / self.tmx_data.tileheight)
 
-        # Vérifier si la case actuelle du joueur est dans la zone de collision
-        if (player_tile_x, player_tile_y) in self.collision_data:
-            # Le joueur est dans une zone de collision avec le calque "pokemon statut", arrêter les mouvements
+        # Vérifier les collisions avec les différents calques de collision
+        if (player_tile_x, player_tile_y) in self.collision_data or \
+           (player_tile_x, player_tile_y) in self.house_collision_data or \
+           (player_tile_x, player_tile_y) in self.lamp_collision_data or \
+           (player_tile_x, player_tile_y) in self.mountain_collision_data or \
+           (player_tile_x, player_tile_y) in self.tree_collision_data or \
+           (player_tile_x, player_tile_y) in self.beach_collision_data or \
+           (player_tile_x, player_tile_y) in self.fence_collision_data:
+            # Le joueur est dans une zone de collision, arrêter les mouvements
             self.player.stop_movement()
         else:
             # Le joueur n'est pas dans une zone de collision, autoriser les mouvements

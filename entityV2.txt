@@ -8,7 +8,7 @@ class Entity(pygame.sprite.Sprite):
         self.keylistener = keylistener
         self.map = map_instance
         self.spritesheet = pygame.image.load("Data/Maps/assets/sprite/hero_01_red_m_walk.png")
-        self.position = [50, 0]
+        self.position = [0, 0]
         self.rect = pygame.Rect(0, 0, 16, 32)
         self.all_images = self.get_all_images()
         self.index_image = 0
@@ -29,22 +29,14 @@ class Entity(pygame.sprite.Sprite):
         tile_y_top = int(self.position[1] / tile_height)
         tile_y_bottom = int((self.position[1] + self.rect.height) / tile_height)
 
-        # Vérifier la collision avec le calque "pokemon statut" ou "house"
         if (
             (tile_x_left, tile_y_top) in self.map.collision_data or
             (tile_x_right, tile_y_top) in self.map.collision_data or
             (tile_x_left, tile_y_bottom) in self.map.collision_data or
-            (tile_x_right, tile_y_bottom) in self.map.collision_data or
-            (tile_x_left, tile_y_top) in self.map.house_collision_data or
-            (tile_x_right, tile_y_top) in self.map.house_collision_data or
-            (tile_x_left, tile_y_bottom) in self.map.house_collision_data or
-            (tile_x_right, tile_y_bottom) in self.map.house_collision_data
+            (tile_x_right, tile_y_bottom) in self.map.collision_data
         ):
-            # Si collision avec "pokemon statut" ou "house", ne rien faire (laisser le personnage dans sa position actuelle)
+            # Si collision, ne rien faire (laisser le personnage dans sa position actuelle)
             pass
-        else:
-            # Si pas de collision, permettre le mouvement
-            self.allow_movement_flag = True
 
     def check_move(self):
         if self.allow_movement_flag:
@@ -58,24 +50,20 @@ class Entity(pygame.sprite.Sprite):
                 self.move_down()
 
     def move_left(self):
-        if self.allow_movement_flag:
-            self.position[0] -= 1
-            self.image = self.all_images["left"][self.index_image]
+        self.position[0] -= 1
+        self.image = self.all_images["left"][self.index_image]
 
     def move_right(self):
-        if self.allow_movement_flag:
-            self.position[0] += 1
-            self.image = self.all_images["right"][self.index_image]
+        self.position[0] += 1
+        self.image = self.all_images["right"][self.index_image]
 
     def move_up(self):
-        if self.allow_movement_flag:
-            self.position[1] -= 1
-            self.image = self.all_images["up"][self.index_image]
+        self.position[1] -= 1
+        self.image = self.all_images["up"][self.index_image]
 
     def move_down(self):
-        if self.allow_movement_flag:
-            self.position[1] += 1
-            self.image = self.all_images["down"][self.index_image]
+        self.position[1] += 1
+        self.image = self.all_images["down"][self.index_image]
 
     def allow_all_movement(self):
         self.allow_movement_flag = True
