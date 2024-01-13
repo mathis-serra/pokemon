@@ -41,7 +41,6 @@ class Map:
     def update(self):
         self.group.update()
 
-        # Vérifier les collisions
         player_rect = self.player.rect
         player_tile_x = int(player_rect.topleft[0] / self.tmx_data.tilewidth)
         player_tile_y = int(player_rect.topleft[1] / self.tmx_data.tileheight)

@@ -1,4 +1,3 @@
-# game.py
 import pygame
 from screen import Screen
 from map import Map
@@ -11,10 +10,7 @@ class Game:
         self.screen = Screen()
         self.map = Map(self.screen)
         self.keylistener = KeyListener()
-        
-        # Passer le paramètre collision_data lors de la création de l'instance Entity
-        self.entity = Entity(self.keylistener, self.map.collision_data)
-        
+        self.entity = Entity(self.keylistener, self.map)  # Ajoutez la référence à la classe Map
         self.map.add_player(self.entity)
 
     def run(self):
