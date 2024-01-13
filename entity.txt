@@ -8,12 +8,13 @@ class Entity(pygame.sprite.Sprite):
         self.keylistener = keylistener
         self.map = map_instance
         self.spritesheet = pygame.image.load("Data/Maps/assets/sprite/hero_01_red_m_walk.png")
+        self.image = Tool.split_image(self.spritesheet, 0, 0, 24, 32)
         self.position = [0, 0]
         self.rect = pygame.Rect(0, 0, 16, 32)
+        self.prev_position = list(self.position)
         self.all_images = self.get_all_images()
         self.index_image = 0
         self.allow_movement_flag = True
-        self.image = self.all_images["down"][self.index_image]
 
     def update(self):
         self.check_move()
@@ -24,19 +25,15 @@ class Entity(pygame.sprite.Sprite):
         tile_width = self.map.tmx_data.tilewidth
         tile_height = self.map.tmx_data.tileheight
 
-        tile_x_left = int(self.position[0] / tile_width)
-        tile_x_right = int((self.position[0] + self.rect.width) / tile_width)
-        tile_y_top = int(self.position[1] / tile_height)
-        tile_y_bottom = int((self.position[1] + self.rect.height) / tile_height)
+        tile_x = int(self.position[0] / tile_width)
+        tile_y = int(self.position[1] / tile_height)
 
-        if (
-            (tile_x_left, tile_y_top) in self.map.collision_data or
-            (tile_x_right, tile_y_top) in self.map.collision_data or
-            (tile_x_left, tile_y_bottom) in self.map.collision_data or
-            (tile_x_right, tile_y_bottom) in self.map.collision_data
-        ):
-            # Si collision, ne rien faire (laisser le personnage dans sa position actuelle)
-            pass
+        if (tile_x, tile_y) in self.map.collision_data:
+            self.position = self.prev_position
+            self.stop_movement()
+        else:
+            self.prev_position = list(self.position)
+            self.allow_movement() 
 
     def check_move(self):
         if self.allow_movement_flag:
@@ -65,7 +62,7 @@ class Entity(pygame.sprite.Sprite):
         self.position[1] += 1
         self.image = self.all_images["down"][self.index_image]
 
-    def allow_all_movement(self):
+    def allow_movement(self):
         self.allow_movement_flag = True
 
     def stop_movement(self):

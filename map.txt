@@ -45,13 +45,12 @@ class Map:
         player_tile_x = int(player_rect.topleft[0] / self.tmx_data.tilewidth)
         player_tile_y = int(player_rect.topleft[1] / self.tmx_data.tileheight)
 
-        # Vérifier si la case actuelle du joueur est dans la zone de collision
         if (player_tile_x, player_tile_y) in self.collision_data:
-            # Le joueur est dans une zone de collision avec le calque "pokemon statut", arrêter les mouvements
+            # Le joueur est dans une zone de collision, arrêter les mouvements
             self.player.stop_movement()
         else:
             # Le joueur n'est pas dans une zone de collision, autoriser les mouvements
-            self.player.allow_all_movement()
+            self.player.allow_movement()
 
         self.group.center(self.player.rect.center)
         self.group.draw(self.screen.get_display())
