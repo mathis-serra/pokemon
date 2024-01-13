@@ -21,14 +21,12 @@ class Map:
         self.map_layer.zoom = 3
         self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=5)
 
-        # Identifier le calque de collision par son nom
         collision_layer = None
         for layer in self.tmx_data.visible_layers:
-            if layer.name == "pokemon statut":  # Change "collision_layer" to your actual collision layer name
+            if layer.name == "pokemon statut":
                 collision_layer = layer
                 break
 
-        # Lire les données de collision
         collision_data = set()
         for x, y, gid in collision_layer:
             if gid:
@@ -45,8 +43,8 @@ class Map:
 
         # Vérifier les collisions
         player_rect = self.player.rect
-        player_tile_x = int(player_rect.x / self.tmx_data.tilewidth)
-        player_tile_y = int(player_rect.y / self.tmx_data.tileheight)
+        player_tile_x = int(player_rect.topleft[0] / self.tmx_data.tilewidth)
+        player_tile_y = int(player_rect.topleft[1] / self.tmx_data.tileheight)
 
         if (player_tile_x, player_tile_y) in self.collision_data:
             # Le joueur est dans une zone de collision, arrêter les mouvements
