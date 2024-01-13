@@ -42,8 +42,8 @@ class Map:
         self.group.update()
 
         player_rect = self.player.rect
-        player_tile_x = int(player_rect.topleft[0] / self.tmx_data.tilewidth)
-        player_tile_y = int(player_rect.topleft[1] / self.tmx_data.tileheight)
+        player_tile_x = int(player_rect.center[0] / self.tmx_data.tilewidth)
+        player_tile_y = int(player_rect.center[1] / self.tmx_data.tileheight)
 
         # Vérifier si la case actuelle du joueur est dans la zone de collision
         if (player_tile_x, player_tile_y) in self.collision_data:
