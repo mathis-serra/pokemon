@@ -26,8 +26,6 @@ class Map:
         self.map_layer = pyscroll.BufferedRenderer(map_data, self.screen.get_size())
         self.map_layer.zoom = 3
         self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=5)
-
-        # Ajouter les nouveaux calques à la liste des calques de collision
         collision_layers = ["pokemon statut", "house", "Lampe and Buisson/mini abre, others",
                             "Montagne", "three", "Plage", "Barriere"]
 
