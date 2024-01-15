@@ -50,8 +50,8 @@ class InterfaceFight(Combat):
 
         health1_bar_width = int(165 * (self.pokemon1['health'] / self.pokemon1['base']['HP']))
         health1_bar_rect = pygame.Rect(605, 335, health1_bar_width, 20)
-        pygame.draw.rect(self.fenetre, (18, 161, 26), health1_bar_rect) 
-        
+        pygame.draw.rect(self.fenetre, ("#13a11a"), health1_bar_rect) 
+
         pokemon1_stat=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Player_Pokemon_Stats.png")
         pokemon1_stat=pygame.transform.scale(pokemon1_stat, (340, 90)) 
         self.fenetre.blit(pokemon1_image, (100, 250))
@@ -75,7 +75,7 @@ class InterfaceFight(Combat):
         
         health2_bar_width = int(165 * (self.pokemon1['health'] / self.pokemon1['base']['HP']))
         health2_bar_rect = pygame.Rect(170, 122, health2_bar_width, 20)
-        pygame.draw.rect(self.fenetre, (18, 161, 26), health2_bar_rect) 
+        pygame.draw.rect(self.fenetre, ("#13a11a"), health2_bar_rect) 
 
         pokemon2_stat=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Enemy_Pokemon_Stats.png")
         pokemon2_stat=pygame.transform.scale(pokemon2_stat, (320, 90)) 
