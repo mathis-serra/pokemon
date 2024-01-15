@@ -26,7 +26,7 @@ class Map:
         self.tmx_data = pytmx.load_pygame(f"Data/MapsPokemon/pokemonmap.tmx")
         map_data = pyscroll.data.TiledMapData(self.tmx_data)
         self.map_layer = pyscroll.BufferedRenderer(map_data, self.screen.get_size())
-        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=7)
+        self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=9)
 
         if switch.name.split("_")[0] == "map":
             self.map_layer.zoom = 3
@@ -37,7 +37,8 @@ class Map:
         self.collisions = []
 
         for obj in self.tmx_data.objects:
-            if obj.name and " " in obj.name:
+            if obj.name == "collision":
+                self.collisions.append(pygame.Rect(obj.x, obj.y, obj.width, obj.height))
                 type = obj.name.split(" ")[0]
                 if type == "switch":
                     self.switchs.append(Switch(
