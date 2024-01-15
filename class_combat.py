@@ -12,6 +12,7 @@ class Combat:
         self.pokedex = []
         self.pokemon1['health'] = self.pokemon1['base']['HP']
         self.pokemon2['health'] = self.pokemon2['base']['HP']
+        self.lvl=1
 
     def charger_types_pokemon(self):
         with open('Data/Pokemon/Type_chart.json','r',encoding='utf-8') as file:
@@ -31,12 +32,11 @@ class Combat:
         types_pokemon = self.types_pokemon
         multiplicateur_type=types_pokemon[type_attaque.lower()][type_defenseur.lower()]
         attaque_pokemon=attaquant['base']['Attack']
-        defense=defenseur['base']['Defense']
-        lvl=1   
+        defense=defenseur['base']['Defense']   
         efficacite_type=multiplicateur_type 
         cm=efficacite_type*random.uniform(0.85, 1)
 
-        pv_perdus = ((((((lvl*0.4+2)*attaque_pokemon*100)/defense)/50)+2)*cm)
+        pv_perdus = ((((((self.lvl*0.4+2)*attaque_pokemon*100)/defense)/50)+2)*cm)
         pv_perdus = max(1, round(pv_perdus))
         
         return pv_perdus
