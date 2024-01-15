@@ -61,8 +61,7 @@ while True:
     # Check for the user closing the window
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
-           
-            pygame.fadeout(5000)  
+             
             pygame.quit()
             exit()
             
