@@ -4,6 +4,7 @@ from Settings import Settings
 from Settings import *
 from Sprites import Sprites
 from Button import Button
+import duel
 import sys
 
 class Menu():
@@ -59,13 +60,22 @@ class Menu():
         
         while True:
             
-            if new_game_button.draw(self.SCREEN.display):
-                pass
+            new_game_button = Button(160, 60, self.SPRITES.menu_bar_pokemon, 1) 
+            continue_button = Button(160, 150, self.SPRITES.menu_bar_blue_pokemon, 1) 
+            mysyery_gift_button = Button(160, 240, self.SPRITES.menu_bar_pokemon, 1) 
+            settings_button = Button(160, 330, self.SPRITES.menu_bar_pokemon, 1)
+            pokedex_button = Button(160, 420, self.SPRITES.menu_bar_pokemon, 1) 
+            self.SCREEN.display.blit(self.SPRITES.menu_bar_pokemon, (160, 510))
+            
+            
+                
+                
             
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
+                    
                     
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
