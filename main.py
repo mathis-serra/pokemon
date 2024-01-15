@@ -30,6 +30,7 @@ interface_fight = InterfaceFight(fenetre,pokemon1_id=10, pokemon2_id=222)
 # Running Game et Event
 start_time = time.time()
 running = True
+pokemon1_image = None
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -37,6 +38,7 @@ while running:
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RETURN:
                 interface_fight.change_text()
+                pokemon1_image = True
 
     current_time = time.time()
     elapsed_time = current_time - start_time
@@ -50,13 +52,13 @@ while running:
         fenetre.blit(text_img, (0, 400))
         fenetre.blit(background, (0, 0))
         interface_fight.display_message(interface_fight.dialogue_text)
-        pokemon1_image = pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/back/{interface_fight.pokemon1_id}.png")
-        pokemon1_image = pygame.transform.scale(pokemon1_image, (200, 200))
-        fenetre.blit(pokemon1_image, (100, 240))
         pokemon2_image = pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/front/{interface_fight.pokemon2_id}.png")
         pokemon2_image = pygame.transform.scale(pokemon2_image, (200, 200)) 
-        
         fenetre.blit(pokemon2_image, (480, 75))
+        if pokemon1_image:
+            pokemon1_image = pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/back/{interface_fight.pokemon1_id}.png")
+            pokemon1_image = pygame.transform.scale(pokemon1_image, (200, 200))
+            fenetre.blit(pokemon1_image, (100, 240))
 
     pygame.display.flip()
 
