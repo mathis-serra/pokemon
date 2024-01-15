@@ -10,6 +10,8 @@ class Combat:
         self.combat_en_cours = True
         self.vainqueur = None
         self.pokedex = []
+        self.pokemon1['health'] = self.pokemon1['base']['HP']
+        self.pokemon2['health'] = self.pokemon2['base']['HP']
 
     def charger_types_pokemon(self):
         with open('Data/Pokemon/Type_chart.json','r',encoding='utf-8') as file:
@@ -42,18 +44,18 @@ class Combat:
     def enlever_pv(self, attaquant, defenseur):
         if self.combat_en_cours:
             degats = self.calcul_degats(attaquant, defenseur)
-            pv_actuels = defenseur['base']['HP']
+            pv_actuels = defenseur['health']
             
-            defenseur['base']['HP'] = max(0, pv_actuels - degats)
+            defenseur['health'] = max(0, pv_actuels - degats)
 
-            if defenseur['base']['HP'] <= 0:
+            if defenseur['health'] <= 0:
                 self.combat_en_cours = False
-                defenseur['base']['HP'] = 0
+                defenseur['health'] = 0
 
             return degats
 
     def pokemon_vainqueur(self):
-        if self.pokemon1['base']['HP'] <= 0:
+        if self.pokemon1['health'] <= 0:
             self.vainqueur=self.pokemon2['name']['french']
         else:
             self.vainqueur=self.pokemon1['name']['french']
@@ -79,7 +81,7 @@ class Combat:
 
                 print(f"{attaquant['name']['french']} a infligé {degats_infliges} dégâts.")
                 print(defenseur['name']['french'])
-                print("HP:", defenseur['base']['HP'])
+                print("HP:", defenseur['health'])
 
                 if not self.combat_en_cours:
                     print(f"Le vainqueur est {self.pokemon_vainqueur()}")

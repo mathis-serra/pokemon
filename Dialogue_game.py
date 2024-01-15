@@ -3,12 +3,14 @@ from class_combat import Combat
 
 class InterfaceFight(Combat):
     def __init__(self, fenetre, pokemon1_id, pokemon2_id):
-        Combat.__init__(self, pokemon1_id, pokemon2_id)
+        Combat.__init__(self, pokemon1_id, pokemon2_id,)
         self.fenetre = fenetre
         self.largeur_fenetre = 800
         self.hauteur_fenetre = 600
         font = "Font/Pokemon_font.ttf"
         self.font = pygame.font.Font(font,30)
+        self.font_name = pygame.font.Font(font,20)
+        self.font_health = pygame.font.Font(font,15)
         self.dialogue_text = f"Un {self.pokemon2['name']['french']} sauvage apparaît !"
         self.pokemon1_id = pokemon1_id
         self.pokemon2_id = pokemon2_id
@@ -41,3 +43,33 @@ class InterfaceFight(Combat):
 
     def change_text(self):
         self.dialogue_text = f"Je t'envoie {self.pokemon1['name']['french']} !"
+
+    def pokemon1_interface(self):
+        pokemon1_image=pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/back/{self.pokemon1_id}.png")
+        pokemon1_image=pygame.transform.scale(pokemon1_image, (200, 200))
+        pokemon1_stat=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Player_Pokemon_Stats.png")
+        pokemon1_stat=pygame.transform.scale(pokemon1_stat, (340, 90)) 
+        self.fenetre.blit(pokemon1_image, (100, 250))
+        self.fenetre.blit(pokemon1_stat, (450, 300))
+
+        name1_text = self.font_name.render(f"{self.pokemon1['name']['french']}", True, ("#000000"))
+        name1_text_rect = name1_text.get_rect(center=(582, 322))
+        self.fenetre.blit(name1_text, name1_text_rect)
+
+        health_text = self.font_health.render(f"{self.pokemon1['health']}/{self.pokemon1['base']['HP']}", True, ("#000000"))
+        health_text_rect = health_text.get_rect(center=(710, 367))
+        self.fenetre.blit(health_text, health_text_rect)
+
+    def pokemon2_interface(self):
+        pokemon2_image=pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/front/{self.pokemon2_id}.png")
+        pokemon2_image=pygame.transform.scale(pokemon2_image, (200, 200)) 
+        pokemon2_stat=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Enemy_Pokemon_Stats.png")
+        pokemon2_stat=pygame.transform.scale(pokemon2_stat, (320, 90)) 
+        self.fenetre.blit(pokemon2_image, (480, 75))
+        self.fenetre.blit(pokemon2_stat, (50, 75))
+
+        name2_text = self.font_name.render(f"{self.pokemon2['name']['french']}", True, ("#000000"))
+        name2_text_rect = name2_text.get_rect(center=(160, 100))
+        self.fenetre.blit(name2_text, name2_text_rect)
+
+    
