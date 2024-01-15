@@ -1,9 +1,6 @@
-import pygame
 import json
-import random
-import pygame as pg
 import pygame.freetype as ft
-import sys
+
 
 class Settings:
     def __init__(self):
