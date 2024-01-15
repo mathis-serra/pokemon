@@ -90,4 +90,11 @@ class InterfaceFight(Combat):
         lvl2_text_rect = lvl2_text.get_rect(center=(320, 102))
         self.fenetre.blit(lvl2_text, lvl2_text_rect)
 
-    
+    def what_you_will_do(self):
+        pokemon_think=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Choice_box.png")
+        pokemon_think=pygame.transform.scale(pokemon_think, (self.largeur_fenetre//2, self.hauteur_fenetre - 400)) 
+        self.fenetre.blit(pokemon_think, (self.largeur_fenetre//2, 400))
+
+        pokemon2_think=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Bottom_Message_Box.png")
+        pokemon2_think=pygame.transform.scale(pokemon2_think, (self.largeur_fenetre//2, self.hauteur_fenetre - 400)) 
+        self.fenetre.blit(pokemon2_think, (0, 400))
