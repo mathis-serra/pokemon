@@ -1,6 +1,7 @@
 import pygame
 import time
 from Dialogue_game import InterfaceFight
+from class_combat import Combat
 
 pygame.init()
 pygame.mixer.init()
@@ -25,7 +26,7 @@ grey = "#8c8c8c"
 black = "#000000"
 green = "#a0e8b1"
 white = "#ffffff"
-interface_fight = InterfaceFight(fenetre,pokemon1_id=213, pokemon2_id=344)
+interface_fight = InterfaceFight(fenetre,pokemon1_id=222, pokemon2_id=386)
 count=0
 
 # Running Game et Event
@@ -33,20 +34,40 @@ start_time = time.time()
 running = True
 pokemon1_image = None
 what_will= None
+fight = False
+start = True
 while running:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
         if event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RETURN:
-                interface_fight.change_text()
+            if event.key == pygame.K_RETURN and fight == False and start == True:
+                interface_fight.change_text(f"Je t'envoie {interface_fight.pokemon1['name']['french']} !")
                 pokemon1_image = True
                 count+=1
                 if count==2:
+                    start=False
                     what_will=True
+            elif event.type == pygame.KEYDOWN and fight==True:
+                    if event.key == pygame.K_RETURN:
+                        interface_fight.fight2_dialogue()
+                        fight = False
+            elif event.type == pygame.KEYDOWN and fight==False and start == False:
+                what_will=True
                 
+        if event.type == pygame.MOUSEBUTTONDOWN:
+            mouse_x, mouse_y = event.pos
+            if interface_fight.bouton_1.collidepoint(mouse_x, mouse_y):
+                fight = True
+                what_will=False
+                interface_fight.fight_dialogue()
+            if interface_fight.bouton_2.collidepoint(mouse_x, mouse_y):
+                print("Bouton 2 cliqué!")
+            if interface_fight.bouton_3.collidepoint(mouse_x, mouse_y):
+                print("Bouton 3 cliqué!")
+            if interface_fight.bouton_4.collidepoint(mouse_x, mouse_y):
+                running = False
                 
-
     current_time = time.time()
     elapsed_time = current_time - start_time
 
@@ -64,6 +85,11 @@ while running:
         interface_fight.pokemon2_interface()
         if what_will:
             interface_fight.what_you_will_do()
+        if interface_fight.combat_fini():
+            interface_fight.finish_fight()
+
+            running = False
+
         
 
     pygame.display.flip()

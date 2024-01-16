@@ -62,6 +62,9 @@ class Combat:
 
         return self.vainqueur
     
+    def combat_fini(self):
+        return self.pokemon1['health'] <= 0 or self.pokemon2['health'] <= 0
+    
     def vainqueur_dresseur(self, dresseur_en_face):
         if self.pokemon1['base']['HP'] <= 0:
             vainqueur = dresseur_en_face
@@ -69,36 +72,8 @@ class Combat:
             vainqueur = "Steve"
         return vainqueur
     
-    def effectuer_tour(self):
-        if self.combat_en_cours:
-            print(f"\nTour {self.tour_actuel} du combat :")
-
-            attaquants = [self.pokemon1, self.pokemon2]
-            defenseurs = [self.pokemon2, self.pokemon1]
-
-            for attaquant, defenseur in zip(attaquants, defenseurs):
-                degats_infliges = self.enlever_pv(attaquant, defenseur)
-
-                print(f"{attaquant['name']['french']} a infligé {degats_infliges} dégâts.")
-                print(defenseur['name']['french'])
-                print("HP:", defenseur['health'])
-
-                if not self.combat_en_cours:
-                    print(f"Le vainqueur est {self.pokemon_vainqueur()}")
-                    break
-                
-            self.tour_actuel += 1
-    
     def enregistrer_dans_pokedex(self, pokemon):
         pokemon_id = pokemon['id']
         if pokemon_id not in [p['id'] for p in self.pokedex]:
             self.pokedex.append(pokemon)
-            print(f"{pokemon['name']['french']} a été ajouté à votre Pokédex !")
-        else:
-            print(f"{pokemon['name']['french']} est déjà dans votre Pokédex.")
         
-
-combat_test = Combat(2, 123)
-
-while combat_test.combat_en_cours:
-    combat_test.effectuer_tour()

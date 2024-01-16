@@ -14,6 +14,12 @@ class InterfaceFight(Combat):
         self.dialogue_text = f"Un {self.pokemon2['name']['french']} sauvage apparaît !"
         self.pokemon1_id = pokemon1_id
         self.pokemon2_id = pokemon2_id
+        self.bouton_rect = pygame.Rect(50, 400, 200, 40)
+        self.bouton_actif = False
+        self.bouton_1 = pygame.Rect(450, 450, 140, 50)
+        self.bouton_2 = pygame.Rect(620, 450, 90, 50)
+        self.bouton_3 = pygame.Rect(450, 515, 150, 50)
+        self.bouton_4 = pygame.Rect(620, 515, 90, 50)
 
     def display_message(self, message):
         lines = self.wrap_text(message, self.largeur_fenetre - 20)
@@ -41,16 +47,15 @@ class InterfaceFight(Combat):
         lines.append(current_line)
         return lines
 
-    def change_text(self):
-        self.dialogue_text = f"Je t'envoie {self.pokemon1['name']['french']} !"
+    def change_text(self,new_text):
+        self.dialogue_text = new_text
 
     def pokemon1_interface(self):
         pokemon1_image=pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/back/{self.pokemon1_id}.png")
         pokemon1_image=pygame.transform.scale(pokemon1_image, (200, 200))
 
-        health1_bar_width = int(165 * (self.pokemon1['health'] / self.pokemon1['base']['HP']))
-        health1_bar_rect = pygame.Rect(605, 335, health1_bar_width, 20)
-        pygame.draw.rect(self.fenetre, ("#13a11a"), health1_bar_rect) 
+        ratio=self.pokemon1['health']/self.pokemon1['base']['HP']
+        pygame.draw.rect(self.fenetre, ("#13a11a"), (605,335,165*ratio,20)) 
 
         pokemon1_stat=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Player_Pokemon_Stats.png")
         pokemon1_stat=pygame.transform.scale(pokemon1_stat, (340, 90)) 
@@ -72,10 +77,9 @@ class InterfaceFight(Combat):
     def pokemon2_interface(self):
         pokemon2_image=pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/front/{self.pokemon2_id}.png")
         pokemon2_image=pygame.transform.scale(pokemon2_image, (200, 200)) 
-        
-        health2_bar_width = int(165 * (self.pokemon1['health'] / self.pokemon1['base']['HP']))
-        health2_bar_rect = pygame.Rect(170, 122, health2_bar_width, 20)
-        pygame.draw.rect(self.fenetre, ("#13a11a"), health2_bar_rect) 
+
+        ratio=self.pokemon2['health']/self.pokemon2['base']['HP']
+        pygame.draw.rect(self.fenetre, ("#13a11a"), (170,122,165*ratio,20)) 
 
         pokemon2_stat=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Enemy_Pokemon_Stats.png")
         pokemon2_stat=pygame.transform.scale(pokemon2_stat, (320, 90)) 
@@ -91,6 +95,12 @@ class InterfaceFight(Combat):
         self.fenetre.blit(lvl2_text, lvl2_text_rect)
 
     def what_you_will_do(self):
+
+        pygame.draw.rect(self.fenetre, ("#13a11a"), self.bouton_1)
+        pygame.draw.rect(self.fenetre, ("#13a11a"), self.bouton_2)
+        pygame.draw.rect(self.fenetre, ("#13a11a"), self.bouton_3)
+        pygame.draw.rect(self.fenetre, ("#13a11a"), self.bouton_4)
+
         pokemon_think=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Choice_box.png")
         pokemon_think=pygame.transform.scale(pokemon_think, (self.largeur_fenetre//2, self.hauteur_fenetre - 400)) 
         self.fenetre.blit(pokemon_think, (self.largeur_fenetre//2, 400))
@@ -98,3 +108,33 @@ class InterfaceFight(Combat):
         pokemon2_think=pygame.image.load(f"Data/Combat/Combat_Sprite/CombatUI/Bottom_Message_Box.png")
         pokemon2_think=pygame.transform.scale(pokemon2_think, (self.largeur_fenetre//2, self.hauteur_fenetre - 400)) 
         self.fenetre.blit(pokemon2_think, (0, 400))
+
+        text_choose=self.font.render(f"Que va faire",True,("#ffffff"))
+        choose_rect=text_choose.get_rect(topleft=(30, 445))
+        self.fenetre.blit(text_choose, choose_rect)
+
+        text_pokemon=self.font.render(f"{self.pokemon1['name']['french']} ?",True,("#ffffff"))
+        pokemon_rect=text_pokemon.get_rect(topleft=(30, 495))
+        self.fenetre.blit(text_pokemon, pokemon_rect)
+
+    def fight_dialogue(self):
+        if self.pokemon1['health'] > 0:
+            self.enlever_pv(self.pokemon1, self.pokemon2)
+            ratio = self.pokemon2['health'] / self.pokemon2['base']['HP']
+            nouvelle_largeur = 165 * ratio
+            pygame.draw.rect(self.fenetre, ("#13a11a"), (170, 122, nouvelle_largeur, 20))
+            self.change_text(f"{self.pokemon1['name']['french']} attaque !")
+        else :
+            self.pokemon_vainqueur()
+            self.change_text(f"{self.vainqueur} est le vainqueur du combat")
+
+    def fight2_dialogue(self):
+        if self.pokemon2['health'] > 0:
+            self.enlever_pv(self.pokemon2, self.pokemon1)
+            ratio = self.pokemon1['health'] / self.pokemon1['base']['HP']
+            nouvelle_largeur = 165 * ratio
+            pygame.draw.rect(self.fenetre, ("#13a11a"), (605,335,nouvelle_largeur,20))
+            self.change_text(f"{self.pokemon2['name']['french']} attaque !")
+        else :
+            self.pokemon_vainqueur()
+            self.change_text(f"{self.vainqueur} est le vainqueur du combat")
