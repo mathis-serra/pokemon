@@ -75,7 +75,37 @@ class Menu():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                    
+                
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    if new_game_button.draw(self.SCREEN.display):
+                        self.SCREEN.display.fill((0, 0, 0))
+                        pygame.display.update()
+                        duel.start()
+                        self.main_menu()
+                        
+                    if continue_button.draw(self.SCREEN.display):
+                        self.SCREEN.display.fill((0, 0, 0))
+                        pygame.display.update()
+                        duel.start()
+                        self.main_menu()
+                        
+                    if mysyery_gift_button.draw(self.SCREEN.display):
+                        self.SCREEN.display.fill((0, 0, 0))
+                        pygame.display.update()
+                        duel.start()
+                        self.main_menu()
+                        
+                    if settings_button.draw(self.SCREEN.display):
+                        self.SCREEN.display.fill((0, 0, 0))
+                        pygame.display.update()
+                        duel.start()
+                        self.main_menu()
+                        
+                    if pokedex_button.draw(self.SCREEN.display):
+                        self.SCREEN.display.fill((0, 0, 0))
+                        pygame.display.update()
+                        duel.start()
+                        self.main_menu()
                     
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_SPACE:
@@ -84,6 +114,3 @@ class Menu():
                         pygame.quit()
                         sys.exit()
 
-if __name__ == "__main__":
-    menu = Menu()
-    menu.run()
