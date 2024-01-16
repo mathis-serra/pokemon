@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="30" height="30" tilewidth="16" tileheight="16" infinite="0" nextlayerid="13" nextobjectid="4">
  <tileset firstgid="1" source="4g tileset_interieur.tsx"/>
+ <tileset firstgid="2529" source="tileset_pokemon_sdk.tsx"/>
  <layer id="1" name="background" width="30" height="30">
   <data encoding="csv">
 97,98,99,97,98,99,97,98,99,97,98,99,97,98,99,97,98,99,97,98,99,97,98,99,97,98,99,97,98,99,
@@ -124,7 +125,7 @@
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
-0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
+0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,2529,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
 0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,
@@ -241,8 +242,8 @@
  </layer>
  <group id="10" name="object">
   <objectgroup id="12" name="interface">
-   <object id="2" name="switch pokemonmap 0" x="208" y="448" width="64" height="32"/>
-   <object id="3" name="spawn pokemonmaison 0" x="208" y="430">
+   <object id="2" name="switch map_0 0" x="208" y="448" width="64" height="32"/>
+   <object id="3" name="spawn map_0 0" x="208" y="430">
     <point/>
    </object>
   </objectgroup>
