@@ -2,7 +2,7 @@ import pygame
 
 from instance import Entity
 from keyhandler import KeyListener
-from screen import Screen
+from Screen import Screen
 from switch import Switch
 
 

@@ -4,6 +4,7 @@ from Settings import Settings
 from Settings import *
 from Sprites import Sprites
 from Button import Button
+from game import Game
 import duel
 import sys
 import main as main
@@ -81,7 +82,8 @@ class Menu():
                     if new_game_button.draw(self.SCREEN.display):
                         self.SCREEN.display.fill((0, 0, 0))
                         pygame.display.update()
-                        main()
+                        game = Game()
+                        game.run()
                         self.main_menu()
                         
                     if continue_button.draw(self.SCREEN.display):

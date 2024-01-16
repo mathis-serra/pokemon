@@ -3,7 +3,7 @@ import pyscroll
 import pytmx
 
 from player import Player
-from screen import Screen
+from Screen import Screen
 from switch import Switch
 
 
