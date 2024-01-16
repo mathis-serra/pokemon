@@ -6,6 +6,7 @@ from Sprites import Sprites
 from Button import Button
 import duel
 import sys
+import main as main
 
 class Menu():
     
@@ -80,7 +81,7 @@ class Menu():
                     if new_game_button.draw(self.SCREEN.display):
                         self.SCREEN.display.fill((0, 0, 0))
                         pygame.display.update()
-                        duel.start()
+                        main()
                         self.main_menu()
                         
                     if continue_button.draw(self.SCREEN.display):
