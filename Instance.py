@@ -1,7 +1,7 @@
 import pygame
 from Keyhandler import KeyListener
 from Screen import Screen
-from map_pokemon.Tool import Tool
+from Tool import Tool
 
 
 class Entity(pygame.sprite.Sprite):

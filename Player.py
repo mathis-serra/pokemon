@@ -3,7 +3,7 @@ import pygame
 from test import Entity
 from Keyhandler import KeyListener
 from Screen import Screen
-from map_pokemon.Switch import Switch
+from Switch import Switch
 
 
 class Player(Entity):

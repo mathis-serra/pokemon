@@ -1,6 +1,6 @@
 
 import pygame as pg
-from intro_main.Colors import Colors
+from Colors import Colors
 
 
 
