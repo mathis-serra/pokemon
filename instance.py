@@ -1,13 +1,7 @@
 import pygame
-<<<<<<< HEAD:map/instance.py
 from keyhandler import KeyListener
-from Screen import Screen
-from map.tool import Tool
-=======
-from Keyhandler import KeyListener
-from Screen import Screen
-from Tool import Tool
->>>>>>> map:instance.py
+from screen import Screen
+from tool import Tool
 
 
 class Entity(pygame.sprite.Sprite):

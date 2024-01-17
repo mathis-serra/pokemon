@@ -2,15 +2,9 @@ import pygame
 import pyscroll
 import pytmx
 
-<<<<<<< HEAD:map/map.py
-from map.player import Player
+from player import Player
 from screen import Screen
-from map.switch import Switch
-=======
-from Player import Player
-from Screen import Screen
-from Switch import Switch
->>>>>>> map:map.py
+from switch import Switch
 
 
 class Map:
@@ -24,7 +18,7 @@ class Map:
         self.switchs: list[Switch] | None = None
         self.collisions: list[pygame.Rect] | None = None
 
-        self.current_map: Switch = Switch("switch", "map_0", pygame.Rect(0, 0, 0, 0), 0)
+        self.current_map: Switch = Switch("switch", "pokemonmap 0", pygame.Rect(0, 0, 0, 0), 0)
 
         self.switch_map(self.current_map)
 

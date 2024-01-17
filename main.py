@@ -1,7 +1,7 @@
 import pygame
 import time
-from combat.Dialogue_game import InterfaceFight
-from combat.class_combat import Combat
+from Dialogue_game import InterfaceFight
+from class_combat import Combat
 
 pygame.init()
 pygame.mixer.init()

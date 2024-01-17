@@ -1,15 +1,8 @@
 import pygame
-<<<<<<< HEAD:map/game.py
 from keyhandler import KeyListener
-from map.map import Map
-from map.player import Player
+from map import Map
+from player import Player
 from screen import Screen
-=======
-from Keyhandler import KeyListener
-from Map import Map
-from Player import Player
-from Screen import Screen
->>>>>>> map:game.py
 
 
 class Game:
