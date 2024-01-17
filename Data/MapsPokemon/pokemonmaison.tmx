@@ -243,7 +243,7 @@
  <group id="10" name="object">
   <objectgroup id="12" name="interface">
    <object id="2" name="switch map_0 0" x="208" y="448" width="64" height="32"/>
-   <object id="3" name="spawn map_0 0" x="208" y="430">
+   <object id="3" name="spawn map_0 0" x="207.75" y="416.75">
     <point/>
    </object>
   </objectgroup>
