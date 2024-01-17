@@ -124,9 +124,6 @@ class InterfaceFight(Combat):
             nouvelle_largeur = 165 * ratio
             pygame.draw.rect(self.fenetre, ("#13a11a"), (170, 122, nouvelle_largeur, 20))
             self.change_text(f"{self.pokemon1['name']['french']} attaque !")
-        else :
-            self.pokemon_vainqueur()
-            self.change_text(f"{self.vainqueur} est le vainqueur du combat")
 
     def fight2_dialogue(self):
         if self.pokemon2['health'] > 0:
@@ -135,6 +132,13 @@ class InterfaceFight(Combat):
             nouvelle_largeur = 165 * ratio
             pygame.draw.rect(self.fenetre, ("#13a11a"), (605,335,nouvelle_largeur,20))
             self.change_text(f"{self.pokemon2['name']['french']} attaque !")
-        else :
-            self.pokemon_vainqueur()
-            self.change_text(f"{self.vainqueur} est le vainqueur du combat")
+    
+    
+    def finish_fight(self):
+        self.pokemon_vainqueur()
+        self.change_text(f"{self.vainqueur} est le vainqueur du combat")
+
+    def xp_interface(self):
+        self.change_text(f"Vous avez gagné 10 XP !")
+        
+
