@@ -4,7 +4,7 @@ import pytmx
 
 from Player import Player
 from Screen import Screen
-from Switch import Switch
+from map_pokemon.Switch import Switch
 
 
 class Map:
