@@ -1,7 +1,12 @@
 import pygame
 
+<<<<<<< HEAD:player.py
 from instance import Entity
 from keyhandler import KeyListener
+=======
+from test import Entity
+from Keyhandler import KeyListener
+>>>>>>> map:Player.py
 from Screen import Screen
 from switch import Switch
 

@@ -1,6 +1,6 @@
 import pygame
 
-from Game import Game
+from Test import Game
 
 pygame.init()
 

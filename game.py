@@ -1,7 +1,13 @@
 import pygame
+<<<<<<< HEAD:game.py
 from keyhandler import KeyListener
 from map import Map
 from player import Player
+=======
+from Keyhandler import KeyListener
+from test import Map
+from Player import Player
+>>>>>>> map:Game.py
 from Screen import Screen
 
 
