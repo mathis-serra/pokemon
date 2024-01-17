@@ -1,5 +1,5 @@
 import pygame
-from class_combat import Combat
+from Class_combat import Combat
 
 class InterfaceFight(Combat):
     def __init__(self, fenetre, pokemon1_id, pokemon2_id):
