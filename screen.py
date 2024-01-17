@@ -17,9 +17,5 @@ class Screen:
     def get_size(self):
         return self.display.get_size()
 
-<<<<<<< HEAD
     def get_display(self):
-=======
-    def get_display(self) -> pygame.display:
->>>>>>> map
         return self.display
