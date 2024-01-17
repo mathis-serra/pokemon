@@ -1,7 +1,7 @@
 import pygame
 import os
 import cv2
-from screen import Screen
+from Screen import Screen
 import time
 from Menu import Menu
 pygame.init()

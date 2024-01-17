@@ -1,6 +1,6 @@
 import pygame
 from keyhandler import KeyListener
-from screen import Screen
+from Screen import Screen
 from tool import Tool
 
 

@@ -2,7 +2,7 @@ import pygame
 from keyhandler import KeyListener
 from map import Map
 from player import Player
-from screen import Screen
+from Screen import Screen
 
 
 class Game:
