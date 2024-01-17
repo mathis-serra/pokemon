@@ -26,7 +26,7 @@ grey = "#8c8c8c"
 black = "#000000"
 green = "#a0e8b1"
 white = "#ffffff"
-interface_fight = InterfaceFight(fenetre,pokemon1_id=222, pokemon2_id=1)
+interface_fight = InterfaceFight(fenetre,pokemon1_id=4, pokemon2_id=1)
 count=0
 
 # Running Game et Event
