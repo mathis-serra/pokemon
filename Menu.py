@@ -1,5 +1,5 @@
 import pygame
-from Screen import Screen
+from screen import Screen
 from Settings import Settings
 from Settings import *
 from Sprites import Sprites

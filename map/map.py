@@ -2,8 +2,8 @@ import pygame
 import pyscroll
 import pytmx
 
-from player import Player
-from Screen import Screen
+from map.player import Player
+from screen import Screen
 from map.switch import Switch
 
 

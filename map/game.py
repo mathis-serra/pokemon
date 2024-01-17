@@ -1,8 +1,8 @@
 import pygame
 from keyhandler import KeyListener
 from map.map import Map
-from player import Player
-from Screen import Screen
+from map.player import Player
+from screen import Screen
 
 
 class Game:
