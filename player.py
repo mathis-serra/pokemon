@@ -1,6 +1,6 @@
 import pygame
 
-from Instance import Entity
+from test import Entity
 from Keyhandler import KeyListener
 from Screen import Screen
 from Switch import Switch
