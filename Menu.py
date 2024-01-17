@@ -5,7 +5,7 @@ from Settings import *
 from Sprites import Sprites
 from Button import Button
 from game import Game
-import duel
+import main
 import sys
 import main as main
 from Button import Button
@@ -89,25 +89,25 @@ class Menu():
                     if selected_button == "continue_button" :
                         self.SCREEN.display.fill((0, 0, 0))
                         pygame.display.update()
-                        duel.start()
+                        main()
                         self.main_menu()
                         
                     if selected_button == "mysyery_gift_button" :
                         self.SCREEN.display.fill((0, 0, 0))
                         pygame.display.update()
-                        duel.start()
+                        main()
                         self.main_menu()
                         
                     if selected_button == "settings_button" :
                         self.SCREEN.display.fill((0, 0, 0))
                         pygame.display.update()
-                        duel.start()
+                        main()
                         self.main_menu()
                         
                     if selected_button == "pokedex_button" :
                         self.SCREEN.display.fill((0, 0, 0))
                         pygame.display.update()
-                        duel.start()
+                        main()
                         self.main_menu()
            
             pygame.display.update()      

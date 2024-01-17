@@ -1,20 +1,11 @@
 import pygame
-<<<<<<< HEAD
-
-from game import Game
-=======
 import time
 from Dialogue_game import InterfaceFight
 from class_combat import Combat
->>>>>>> combat
 
 pygame.init()
+pygame.mixer.init()
 
-<<<<<<< HEAD
-if __name__ == "__main__":
-    game: Game = Game()
-    game.run()
-=======
 # Fenetre
 largeur_fenetre = 800
 hauteur_fenetre = 600
@@ -125,4 +116,3 @@ while running:
     pygame.display.flip()
 
 pygame.quit()
->>>>>>> combat
