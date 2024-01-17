@@ -2,7 +2,7 @@ import pygame
 import pyscroll
 import pytmx
 
-from Test import Player
+from Player import Player
 from Screen import Screen
 from Switch import Switch
 

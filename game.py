@@ -1,7 +1,7 @@
 import pygame
 from Keyhandler import KeyListener
 from test import Map
-from Test import Player
+from Player import Player
 from Screen import Screen
 
 
