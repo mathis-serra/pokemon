@@ -3,7 +3,7 @@ import pygame
 from test import Entity
 from Keyhandler import KeyListener
 from Screen import Screen
-from Switch import Switch
+from Test import Switch
 
 
 class Player(Entity):

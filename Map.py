@@ -4,7 +4,7 @@ import pytmx
 
 from Player import Player
 from Screen import Screen
-from Switch import Switch
+from Test import Switch
 
 
 class Map:
