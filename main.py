@@ -88,9 +88,9 @@ while running:
                         finish=True
                         finish_1=True
             if interface_fight.bouton_2.collidepoint(mouse_x, mouse_y):
-                print("Bouton 2 cliqué!")
+                pass
             if interface_fight.bouton_3.collidepoint(mouse_x, mouse_y):
-                print("Bouton 3 cliqué!")
+                pass
             if interface_fight.bouton_4.collidepoint(mouse_x, mouse_y):
                 running = False
                 
