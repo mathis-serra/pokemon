@@ -4,10 +4,10 @@ from Settings import Settings
 from Settings import *
 from Sprites import Sprites
 from Button import Button
-from game import Game
-import main as main
+from Game import Game
+
 import sys
-import main as main
+
 from Button import Button
 
 class Menu():
