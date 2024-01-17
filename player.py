@@ -1,9 +1,9 @@
 import pygame
 
-from instance import Entity
-from keyhandler import KeyListener
-from screen import Screen
-from switch import Switch
+from Instance import Entity
+from Keyhandler import KeyListener
+from Screen import Screen
+from Switch import Switch
 
 
 class Player(Entity):
