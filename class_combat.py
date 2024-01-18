@@ -42,10 +42,10 @@ class Combat:
         return pv_perdus
     
     def enlever_pv(self, attaquant, defenseur):
-        if self.combat_en_cours:
+        if self.combat_en_cours and self.attaque_reussie(attaquant, defenseur):
             degats = self.calcul_degats(attaquant, defenseur)
             pv_actuels = defenseur['health']
-            
+
             defenseur['health'] = max(0, pv_actuels - degats)
 
             if defenseur['health'] <= 0:
@@ -53,7 +53,18 @@ class Combat:
                 defenseur['health'] = 0
 
             return degats
+        else:
+            return 0
 
+    def attaque_reussie(self,attaquant,defenseur):
+        chance_attaque = random.uniform(0, 1)
+        chance_esquive = 0.1
+
+        if chance_attaque > chance_esquive:
+            return True
+        else:
+            return False
+        
     def pokemon_vainqueur(self):
         if self.pokemon1['health'] <= 0:
             self.vainqueur=self.pokemon2['name']['french']

@@ -1,5 +1,6 @@
 import pygame
 from Class_combat import Combat
+import time
 
 class InterfaceFight(Combat):
     def __init__(self, fenetre, pokemon1_id, pokemon2_id):
@@ -20,7 +21,7 @@ class InterfaceFight(Combat):
         self.bouton_2 = pygame.Rect(620, 450, 90, 50)
         self.bouton_3 = pygame.Rect(450, 515, 150, 50)
         self.bouton_4 = pygame.Rect(620, 515, 90, 50)
-
+        
     def display_message(self, message):
         lines = self.wrap_text(message, self.largeur_fenetre - 20)
         y_offset = self.hauteur_fenetre - 120
@@ -119,20 +120,26 @@ class InterfaceFight(Combat):
 
     def fight_dialogue(self):
         if self.pokemon1['health'] > 0:
-            self.enlever_pv(self.pokemon1, self.pokemon2)
-            ratio = self.pokemon2['health'] / self.pokemon2['base']['HP']
-            nouvelle_largeur = 165 * ratio
-            pygame.draw.rect(self.fenetre, ("#13a11a"), (170, 122, nouvelle_largeur, 20))
-            self.change_text(f"{self.pokemon1['name']['french']} attaque !")
+            if self.attaque_reussie(self.pokemon1, self.pokemon2):
+                self.enlever_pv(self.pokemon1, self.pokemon2)
+                ratio = self.pokemon2['health'] / self.pokemon2['base']['HP']
+                nouvelle_largeur = 165 * ratio
+                pygame.draw.rect(self.fenetre, ("#13a11a"), (170, 122, nouvelle_largeur, 20))
+                self.change_text(f"{self.pokemon1['name']['french']} attaque !")
+            else:
+                self.change_text(f"{self.pokemon1['name']['french']} a raté son attaque !")
 
     def fight2_dialogue(self):
         if self.pokemon2['health'] > 0:
-            self.enlever_pv(self.pokemon2, self.pokemon1)
-            ratio = self.pokemon1['health'] / self.pokemon1['base']['HP']
-            nouvelle_largeur = 165 * ratio
-            pygame.draw.rect(self.fenetre, ("#13a11a"), (605,335,nouvelle_largeur,20))
-            self.change_text(f"{self.pokemon2['name']['french']} attaque !")
-    
+            if self.attaque_reussie(self.pokemon2, self.pokemon1):
+                self.enlever_pv(self.pokemon2, self.pokemon1)
+                ratio = self.pokemon1['health'] / self.pokemon1['base']['HP']
+                nouvelle_largeur = 165 * ratio
+                pygame.draw.rect(self.fenetre, ("#13a11a"), (605,335,nouvelle_largeur,20))
+                self.change_text(f"{self.pokemon2['name']['french']} attaque !")
+            else:
+                self.change_text(f"{self.pokemon1['name']['french']} a raté son attaque !")
+        
     
     def finish_fight(self):
         self.pokemon_vainqueur()
@@ -142,3 +149,24 @@ class InterfaceFight(Combat):
         self.change_text(f"Vous avez gagné 10 XP !")
         
 
+    def animation_pokemon(self):
+
+        temps_initial = time.time()
+        temps_ecoule = time.time() - temps_initial
+
+        if temps_ecoule < 2.0:
+            self.position_courante += self.vitesse_x if self.deplacement_droite else -self.vitesse_x
+
+            if (
+                self.position_courante >= self.position_initiale + 10
+                or self.position_courante <= self.position_initiale - 10
+            ):
+                self.deplacement_droite = not self.deplacement_droite
+
+        self.fenetre.fill((255, 255, 255))
+
+        self.pokemon_rect.x = self.position_courante
+        self.fenetre.blit(self.pokemon_image, self.pokemon_rect)
+
+        pygame.display.flip()
+        pygame.time.Clock().tick(30)
