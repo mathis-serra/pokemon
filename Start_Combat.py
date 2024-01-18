@@ -119,3 +119,5 @@ class PokemonGameCombat():
             pygame.display.flip()
 
         pygame.quit()
+
+pokemon=PokemonGameCombat()
