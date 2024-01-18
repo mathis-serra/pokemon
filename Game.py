@@ -23,7 +23,7 @@ class Game:
     def handle_input(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                pygame.quit()
+                self.running = False
             elif event.type == pygame.KEYDOWN:
                 self.keylistener.add_key(event.key)
             elif event.type == pygame.KEYUP:
