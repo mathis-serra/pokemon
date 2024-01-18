@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="382">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="399">
  <tileset firstgid="1" source="tileset_pokemon_sdk.tsx"/>
  <tileset firstgid="4257" source="untitled-removebg-preview (1).tsx"/>
  <layer id="1" name="backgound" width="50" height="50">
@@ -824,7 +824,7 @@
     <text fontfamily="Segoe UI" wrap="1" bold="1" italic="1">Gojo Team</text>
    </object>
   </objectgroup>
-  <objectgroup id="26" name="collisions">
+  <objectgroup id="26" name="collisions" visible="0">
    <object id="52" name="collision" x="128" y="32" width="64" height="64"/>
    <object id="53" name="collision" x="144" y="16" width="32" height="16"/>
    <object id="60" name="collision" x="368" y="208" width="16" height="16"/>
@@ -975,6 +975,34 @@
   <objectgroup id="27" name="interface">
    <object id="326" name="switch house_0 0" x="512" y="256" width="16" height="16"/>
    <object id="329" name="spawn house_0 0" x="512.239" y="305.08">
+    <point/>
+   </object>
+   <object id="382" name="switch house_0 0" x="384" y="256" width="16" height="16"/>
+   <object id="383" name="spawn house_0 0" x="384.364" y="304.364">
+    <point/>
+   </object>
+   <object id="385" name="switch house_0 0" x="608" y="64" width="16" height="16"/>
+   <object id="388" name="switch house_0 0" x="336" y="64" width="16" height="16"/>
+   <object id="389" name="switch house_0 0" x="144" y="80" width="16" height="16"/>
+   <object id="390" name="switch house_0 0" x="416" y="496" width="16" height="16"/>
+   <object id="391" name="switch house_0 0" x="608" y="528" width="16" height="16"/>
+   <object id="392" name="switch house_0 0" x="704" y="544" width="16" height="16"/>
+   <object id="393" name="spawn house_0 0" x="415.273" y="543.818">
+    <point/>
+   </object>
+   <object id="394" name="spawn house_0 0" x="609" y="574">
+    <point/>
+   </object>
+   <object id="395" name="spawn house_0 0" x="704.182" y="591.818">
+    <point/>
+   </object>
+   <object id="396" name="spawn house_0 0" x="608" y="112.182">
+    <point/>
+   </object>
+   <object id="397" name="spawn house_0 0" x="334.25" y="111.75">
+    <point/>
+   </object>
+   <object id="398" name="spawn house_0 0" x="143" y="144.75">
     <point/>
    </object>
   </objectgroup>
