@@ -3,12 +3,11 @@ from Screen import Screen
 from Settings import Settings
 from Settings import *
 from Sprites import Sprites
-from Button import Button
+from Buttons import Button
 from Game import Game
 
 import sys
 
-from Button import Button
 
 class Menu():
     

@@ -51,7 +51,7 @@ class InterfaceFight(Combat):
         self.dialogue_text = new_text
 
     def pokemon1_interface(self):
-        pokemon1_image=pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/back/{self.pokemon1_id}.png")
+        pokemon1_image=pygame.image.load(f"Data/Pokemon_Sprites/back/{self.pokemon1_id}.png")
         pokemon1_image=pygame.transform.scale(pokemon1_image, (200, 200))
 
         ratio=self.pokemon1['health']/self.pokemon1['base']['HP']
@@ -75,7 +75,7 @@ class InterfaceFight(Combat):
         self.fenetre.blit(lvl1_text, lvl1_text_rect)
 
     def pokemon2_interface(self):
-        pokemon2_image=pygame.image.load(f"Data/Pokemon/Pokemon_Sprites/front/{self.pokemon2_id}.png")
+        pokemon2_image=pygame.image.load(f"Data/Pokemon_Sprites/front/{self.pokemon2_id}.png")
         pokemon2_image=pygame.transform.scale(pokemon2_image, (200, 200)) 
 
         ratio=self.pokemon2['health']/self.pokemon2['base']['HP']

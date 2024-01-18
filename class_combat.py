@@ -15,12 +15,12 @@ class Combat:
         self.lvl=1
 
     def charger_types_pokemon(self):
-        with open('Data/Pokemon/Type_chart.json','r',encoding='utf-8') as file:
+        with open('Data/Type_chart.json','r',encoding='utf-8') as file:
             types_pokemon = json.load(file)
         return types_pokemon
 
     def charger_pokemon(self, pokemon_id):
-        with open('Data/Pokemon/Pokedex.json','r',encoding='utf-8') as file:
+        with open('Data/Pokedex.json','r',encoding='utf-8') as file:
             pokedex = json.load(file)
         for pokemon in pokedex:
             if pokemon['id'] == pokemon_id:
