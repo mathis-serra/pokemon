@@ -973,36 +973,8 @@
    <object id="381" name="collision" x="800" y="672" width="16" height="144"/>
   </objectgroup>
   <objectgroup id="27" name="interface">
-   <object id="326" name="switch house_0 0" x="512" y="256" width="16" height="16"/>
-   <object id="329" name="spawn house_0 0" x="512.239" y="305.08">
-    <point/>
-   </object>
-   <object id="382" name="switch house_0 0" x="384" y="256" width="16" height="16"/>
-   <object id="383" name="spawn house_0 0" x="384.364" y="304.364">
-    <point/>
-   </object>
-   <object id="385" name="switch house_0 0" x="608" y="64" width="16" height="16"/>
-   <object id="388" name="switch house_0 0" x="336" y="64" width="16" height="16"/>
-   <object id="389" name="switch house_0 0" x="144" y="80" width="16" height="16"/>
-   <object id="390" name="switch house_0 0" x="416" y="496" width="16" height="16"/>
-   <object id="391" name="switch house_0 0" x="608" y="528" width="16" height="16"/>
-   <object id="392" name="switch house_0 0" x="704" y="544" width="16" height="16"/>
-   <object id="393" name="spawn house_0 0" x="415.273" y="543.818">
-    <point/>
-   </object>
-   <object id="394" name="spawn house_0 0" x="609" y="574">
-    <point/>
-   </object>
-   <object id="395" name="spawn house_0 0" x="704.182" y="591.818">
-    <point/>
-   </object>
-   <object id="396" name="spawn house_0 0" x="608" y="112.182">
-    <point/>
-   </object>
-   <object id="397" name="spawn house_0 0" x="334.25" y="111.75">
-    <point/>
-   </object>
-   <object id="398" name="spawn house_0 0" x="143" y="144.75">
+   <object id="326" name="switch pokemonmaison 0" x="512" y="256" width="16" height="16"/>
+   <object id="329" name="spawn pokemonmaison 0" x="512.239" y="305.08">
     <point/>
    </object>
   </objectgroup>

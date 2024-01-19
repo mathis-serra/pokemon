@@ -17,12 +17,12 @@ class Map:
         self.switchs: list[Switch] | None = None
         self.collisions: list[pygame.Rect] | None = None
 
-        self.current_map: Switch = Switch("switch", "map_0", pygame.Rect(0, 0, 0, 0), 0)
+        self.current_map: Switch = Switch("switch", "pokemonmap", pygame.Rect(0, 0, 0, 0), 0)
 
         self.switch_map(self.current_map)
 
     def switch_map(self, switch: Switch) -> None:
-        self.tmx_data = pytmx.load_pygame(f"Data/MapsPokemon/pokemonmap.tmx")
+        self.tmx_data = pytmx.load_pygame(f"Data/MapsPokemon/{switch.name}.tmx")
         map_data = pyscroll.data.TiledMapData(self.tmx_data)
         self.map_layer = pyscroll.BufferedRenderer(map_data, self.screen.get_size())
         self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=9)
