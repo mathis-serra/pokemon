@@ -14,11 +14,11 @@ class Game:
         self.player: Player = Player(self.keylistener, self.screen, 512, 288)
         self.map.add_player(self.player)
 
-    def run(self) -> None:
-        while self.running:
-            self.handle_input()
-            self.map.update()
-            self.screen.update()
+    def run(self):
+        
+        self.handle_input()
+        self.map.update()
+        self.screen.update()
 
     def handle_input(self) -> None:
         for event in pygame.event.get():

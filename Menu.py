@@ -3,8 +3,9 @@ from Screen import Screen
 from Settings import Settings
 from Settings import *
 from Sprites import Sprites
-from Buttons import Button
+from Button import Button
 from Game import Game
+from Pokedex import Pokedex
 
 import sys
 
@@ -19,7 +20,7 @@ class Menu():
     
     
     def main_menu(self):
-        font = pygame.font.Font("Data/Game/Font/pokemon-emerald.ttf", 36)
+        font = pygame.font.Font("Data/pokemon-emerald.ttf", 36)
         self.SCREEN.display.blit(self.SPRITES.main_menu_pokemon, (0, 0))
         new_game_button = Button(160, 60, self.SPRITES.menu_bar_pokemon, 1) 
         continue_button = Button(160, 150, self.SPRITES.menu_bar_pokemon, 1) 
@@ -86,28 +87,21 @@ class Menu():
                         game.run()
                                         
                     if selected_button == "continue_button" :
-                        self.SCREEN.display.fill((0, 0, 0))
-                        pygame.display.update()
-                        main()
-                        self.main_menu()
+                        pass
                         
                     if selected_button == "mysyery_gift_button" :
-                        self.SCREEN.display.fill((0, 0, 0))
-                        pygame.display.update()
-                        main()
-                        self.main_menu()
+                        pass
+                        
                         
                     if selected_button == "settings_button" :
-                        self.SCREEN.display.fill((0, 0, 0))
-                        pygame.display.update()
-                        main()
-                        self.main_menu()
+                        pass
+                        
                         
                     if selected_button == "pokedex_button" :
-                        self.SCREEN.display.fill((0, 0, 0))
-                        pygame.display.update()
-                        main()
-                        self.main_menu()
+                        pokedex = Pokedex()
+                        pokedex.show_screen() 
+                        
+                        
            
             pygame.display.update()      
             

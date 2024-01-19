@@ -29,12 +29,17 @@ class Sprites():
         self.main_menu_pokemon = pg.transform.scale(pg.image.load("Data/Game/Menu_Sprites/main_menu_pokemon.png"), (1280, 720))
         self.menu_bar_pokemon = pg.transform.scale(pg.image.load("Data/Game/Menu_Sprites/menu_bar_pokemon.png"), (970, 84))
         self.menu_bar_blue_pokemon = pg.transform.scale(pg.image.load("Data/Game/Menu_Sprites/menu_bar_blue_pokemon.png"), (970, 84))
-
+        
+        
+        #pokedex sprites
+        self.pokedex_pokemon = pg.transform.scale(pg.image.load("Data/Game/Menu_Sprites/pokedex_background.png"), (1280, 720))
+        self.pokedex_button_up = pg.transform.scale(pg.image.load("Data/Game/Menu_Sprites/button_up.png"), (175, 130))
+        self.pokedex_button_down = pg.transform.scale(pg.image.load("Data/Game/Menu_Sprites/button_down.png"), (175, 130))
         # Animation Cooldown #
         self.player_intro_speed = 250
 
-    def get_pokemon_sprite(self, pokemon_id, position):
-        sprite = pg.image.load(f"Data/Pokemon/Pokemon_Sprites/{position}/{pokemon_id}.png").convert_alpha()
+    def get_pokemon_sprite(self, pokemon_id):
+        sprite = pg.image.load(f"Data/Pokemon_Sprites/front/{pokemon_id}.png").convert_alpha()
         return pg.transform.scale(sprite, (300, 300))
 
     def get_combat_player_sprite(self, id):

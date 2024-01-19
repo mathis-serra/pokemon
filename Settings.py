@@ -4,7 +4,7 @@ import pygame.freetype as ft
 
 class Settings:
     def __init__(self):
-        self.font = ft.Font('Data/Game/Font/pokemon-emerald.ttf', 30)
+        self.FONT= ft.Font('Data/pokemon-emerald.ttf', 30)
         
          # path to pokemon data #
         with open("Data/Pokedex.json", "r", encoding="utf8") as json_file:
