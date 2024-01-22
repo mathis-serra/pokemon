@@ -4,7 +4,7 @@ import os
 import cv2
 from Screen import Screen
 import time
-from Menu import Menu
+# from Menu import Menu
 pygame.init()
 
 screen = Screen()
@@ -32,6 +32,7 @@ pygame.mixer.music.play(-1)  # -1 means play the music on loop
 
 # Read and display each frame of the video
 while True:
+    state ="intro"
     ret, frame = cap.read()
     if not ret:
         # If the video has ended, break out of the loop
@@ -51,21 +52,25 @@ while True:
     frame = pygame.surfarray.make_surface(frame)
 
     # Calculate the position to center the frame on the window
-    frame_x = (1280 - frame.get_width()) // 2  
-    frame_y = (880 - frame.get_height()) // 2  
+    if pygame.display.get_init():
+        frame_x = (1280 - frame.get_width()) // 2  
+        frame_y = (880 - frame.get_height()) // 2  
 
-    # Blit the frame onto the window at the center position
-    window.blit(frame, (frame_x, frame_y))
+        # Blit the frame onto the window at the center position
+        window.blit(frame, (frame_x, frame_y))
 
-    # Update the display
-    pygame.display.flip()
+        # Update the display
+        pygame.display.flip()
 
     # Check for the user closing the window
+    pygame.display.init()  # Initialize the pygame video module
+
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
-            pygame.mixer.music.stop()   
-            menu = Menu()
-            menu.run()
+            pygame.mixer.music.stop() 
+            state = "menu"  
+            # menu = Menu()
+            # menu.run()
             pygame.quit()
             
         

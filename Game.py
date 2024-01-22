@@ -7,7 +7,7 @@ from Screen import Screen
 
 class Game:
     def __init__(self):
-        self.running: bool = True
+        self.running: bool = False
         self.screen: Screen = Screen()
         self.map: Map = Map(self.screen)
         self.keylistener: KeyListener = KeyListener()
@@ -15,12 +15,12 @@ class Game:
         self.map.add_player(self.player)
 
     def run(self):
-        
+        self.running = True
         self.handle_input()
         self.map.update()
         self.screen.update()
 
-    def handle_input(self) -> None:
+    def handle_input(self):
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 pygame.quit()

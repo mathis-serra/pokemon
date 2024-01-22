@@ -69,6 +69,11 @@ class Pokedex:
     def get_pokemon_shiny_icon(self, pokemon_name):
         return pygame.image.load(f"Data/Game/Sprites/Pokemon/{pokemon_name}_shiny_icon.png")
     
+    
+    
+    def get_pokemon_image(self, pokemon_id):
+        return pygame.image.load(f"Data/Pokemon_Sprites/front/{pokemon_id}.png")
+        
 
     def show_screen(self):
         self.load_pokedex()
@@ -84,16 +89,21 @@ class Pokedex:
         button_up.draw(self.SCREEN.display)
         button_down.draw(self.SCREEN.display)
     
-        self.SCREEN.update()
+        pygame.display.flip()
         
-        
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                pygame.quit()
-                exit()
+        while True:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    pygame.quit()
+                    exit()
 
         
 
+
+
+pokedex = Pokedex()
+pokedex.get_pokemon_image(1)
+pokedex.show_screen()
 
 
 

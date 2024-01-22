@@ -5,9 +5,10 @@ from Settings import *
 from Sprites import Sprites
 from Button import Button
 from Game import Game
-from Pokedex import Pokedex
+# from Pokedex import Pokedex
 
 import sys
+
 
 
 class Menu():
@@ -20,7 +21,7 @@ class Menu():
     
     
     def main_menu(self):
-        font = pygame.font.Font("Data/pokemon-emerald.ttf", 36)
+        font = pygame.font.Font("Data/Game/Font/pokemon-emerald.ttf", 36)
         self.SCREEN.display.blit(self.SPRITES.main_menu_pokemon, (0, 0))
         new_game_button = Button(160, 60, self.SPRITES.menu_bar_pokemon, 1) 
         continue_button = Button(160, 150, self.SPRITES.menu_bar_pokemon, 1) 
@@ -58,52 +59,54 @@ class Menu():
 
     def run(self):
         self.SPRITES = Sprites()
-        self.main_menu()
+
+        new_game_button = Button(160, 60, self.SPRITES.menu_bar_pokemon, 1)
+        continue_button = Button(160, 150, self.SPRITES.menu_bar_blue_pokemon, 1)
+        mysyery_gift_button = Button(160, 240, self.SPRITES.menu_bar_pokemon, 1)
+        settings_button = Button(160, 330, self.SPRITES.menu_bar_pokemon, 1)
+        pokedex_button = Button(160, 420, self.SPRITES.menu_bar_pokemon, 1)
+        self.SCREEN.display.blit(self.SPRITES.menu_bar_pokemon, (160, 510))
+
+        state = "menu"
+        # pokedex = Pokedex()
+        current_state = self.main_menu()
         
-        selected_button = "new_game_button"
         
-        menu_buttons = {
-        "new_game_button": Button(160, 60, self.SPRITES.menu_bar_pokemon, 1),
-        "continue_button": Button(160, 150, self.SPRITES.menu_bar_pokemon, 1),
-        "mysyery_gift_button": Button(160, 240, self.SPRITES.menu_bar_pokemon, 1),
-        "settings_button": Button(160, 330, self.SPRITES.menu_bar_pokemon, 1),
-        "pokedex_button": Button(160, 420, self.SPRITES.menu_bar_pokemon, 1),
-        }
-        
-        while True:
-            
-            
+        while True: 
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
                     sys.exit()
-                
+
                 if event.type == pygame.MOUSEBUTTONDOWN:
-                    if selected_button in menu_buttons and menu_buttons[selected_button].draw(self.SCREEN.display):
-                        self.SCREEN.display.fill((0, 0, 0))
-                        pygame.display.flip()
-                    if selected_button == "new_game_button":
+                    if new_game_button.draw(self.SCREEN.display):
                         game = Game()
                         game.run()
-                                        
-                    if selected_button == "continue_button" :
+
+                    if continue_button.draw(self.SCREEN.display):
+                        print("continue_button")
+
+                    if mysyery_gift_button.draw(self.SCREEN.display):
+                        print("mysyery_gift_button")
+
+                    if settings_button.draw(self.SCREEN.display):
                         pass
-                        
-                    if selected_button == "mysyery_gift_button" :
-                        pass
-                        
-                        
-                    if selected_button == "settings_button" :
-                        pass
-                        
-                        
-                    if selected_button == "pokedex_button" :
-                        pokedex = Pokedex()
-                        pokedex.show_screen() 
-                        
-                        
-           
-            pygame.display.update()      
+
+                    if pokedex_button.draw(self.SCREEN.display):
+                        state = "pokedex"
+                        # current_menu = pokedex
+            # if state == "pokedex":
+                # pokedex.show_screen()
+            # elif state == "menu":
+                # self.main_menu()
+            
+            pygame.display.flip()
+
+             
+manu = Menu()   
+manu.run()
+          
+
             
             
         
