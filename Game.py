@@ -7,7 +7,7 @@ from Screen import Screen
 
 class Game:
     def __init__(self):
-        self.running: bool = True
+        self.show_screen: bool = True
         self.screen: Screen = Screen()
         self.map: Map = Map(self.screen)
         self.keylistener: KeyListener = KeyListener()
@@ -15,7 +15,7 @@ class Game:
         self.map.add_player(self.player)
 
     def run(self) -> None:
-        while self.running:
+        while self.show_screen:
             self.handle_input()
             self.map.update()
             self.screen.update()
@@ -23,7 +23,7 @@ class Game:
     def handle_input(self) -> None:
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
-                self.running = False
+                self.show_screen= False
             elif event.type == pygame.KEYDOWN:
                 self.keylistener.add_key(event.key)
             elif event.type == pygame.KEYUP:
