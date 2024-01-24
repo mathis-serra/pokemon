@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="399">
+<map version="1.10" tiledversion="1.10.2" orientation="orthogonal" renderorder="right-down" width="50" height="50" tilewidth="16" tileheight="16" infinite="0" nextlayerid="28" nextobjectid="400">
  <tileset firstgid="1" source="tileset_pokemon_sdk.tsx"/>
  <tileset firstgid="4257" source="untitled-removebg-preview (1).tsx"/>
  <layer id="1" name="backgound" width="50" height="50">
@@ -824,7 +824,7 @@
     <text fontfamily="Segoe UI" wrap="1" bold="1" italic="1">Gojo Team</text>
    </object>
   </objectgroup>
-  <objectgroup id="26" name="collisions" visible="0">
+  <objectgroup id="26" name="collisions">
    <object id="52" name="collision" x="128" y="32" width="64" height="64"/>
    <object id="53" name="collision" x="144" y="16" width="32" height="16"/>
    <object id="60" name="collision" x="368" y="208" width="16" height="16"/>
@@ -916,7 +916,6 @@
    <object id="278" name="collision" x="416" y="352" width="32" height="64"/>
    <object id="279" name="collision" x="416" y="336" width="32" height="16"/>
    <object id="280" name="collision" x="496" y="272" width="16" height="16"/>
-   <object id="282" name="collision" x="544" y="320" width="16" height="16"/>
    <object id="283" name="collision" x="560" y="256" width="16" height="16"/>
    <object id="284" name="collision" x="560" y="272" width="16" height="16"/>
    <object id="286" name="collision" x="672" y="176" width="48" height="64"/>

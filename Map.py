@@ -18,7 +18,6 @@ class Map:
         self.collisions: list[pygame.Rect] | None = None
 
         self.current_map: Switch = Switch("switch", "pokemonmap", pygame.Rect(0, 0, 0, 0), 0)
-
         self.switch_map(self.current_map)
 
     def switch_map(self, switch: Switch) -> None:
@@ -26,7 +25,7 @@ class Map:
         map_data = pyscroll.data.TiledMapData(self.tmx_data)
         self.map_layer = pyscroll.BufferedRenderer(map_data, self.screen.get_size())
         self.group = pyscroll.PyscrollGroup(map_layer=self.map_layer, default_layer=9)
-
+        
         if switch.name.split("_")[0] == "map":
             self.map_layer.zoom = 3
         else:
