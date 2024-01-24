@@ -29,12 +29,12 @@ class PokemonGameCombat():
         black = "#000000"
         green = "#a0e8b1"
         white = "#ffffff"
-        interface_fight = InterfaceFight(fenetre,pokemon1_id=222, pokemon2_id=1)
+        interface_fight = InterfaceFight(fenetre,pokemon1_id=1, pokemon2_id=7)
         count=0
 
         # Running Game et Event
         start_time = time.time()
-        running = True
+        show_screen = True
         pokemon1_image = None
         what_will= None
         fight = False
@@ -46,10 +46,11 @@ class PokemonGameCombat():
         player2=False
         finish_1=False
         stop=False
-        while running:
+        
+        while show_screen:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    running = False
+                    show_screen = False
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN and fight == False and start == True:
                         interface_fight.change_text(f"Je t'envoie {interface_fight.pokemon1['name']['french']} !")
@@ -59,7 +60,7 @@ class PokemonGameCombat():
                             start=False
                             what_will=True
                     elif event.type == pygame.KEYDOWN and stop == True:
-                        running=False
+                        show_screen=False
                     elif event.type == pygame.KEYDOWN and fight==True and finish ==False and finish_1==False:
                             if event.key == pygame.K_RETURN:
                                 interface_fight.fight2_dialogue()
@@ -74,7 +75,7 @@ class PokemonGameCombat():
                         stop = True
 
                     elif event.type == pygame.KEYDOWN and fight==False and start == False and finish == True:
-                        running = False
+                        show_screen = False
                     elif event.type == pygame.KEYDOWN and fight==False and start == False:
                         what_will=True
             
@@ -95,7 +96,7 @@ class PokemonGameCombat():
                     if interface_fight.bouton_3.collidepoint(mouse_x, mouse_y):
                         pass
                     if interface_fight.bouton_4.collidepoint(mouse_x, mouse_y):
-                        running = False
+                        show_screen = False
                         
             current_time = time.time()
             elapsed_time = current_time - start_time

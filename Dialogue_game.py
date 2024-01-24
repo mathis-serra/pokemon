@@ -71,7 +71,7 @@ class InterfaceFight(Combat):
         health_text_rect = health_text.get_rect(center=(720, 367))
         self.fenetre.blit(health_text, health_text_rect)
 
-        lvl1_text = self.font_name.render(f"{self.lvl}", True, ("#000000"))
+        lvl1_text = self.font_name.render(f"{self.pokemon1['level']}", True, ("#000000"))
         lvl1_text_rect = lvl1_text.get_rect(center=(755,322))
         self.fenetre.blit(lvl1_text, lvl1_text_rect)
 
@@ -147,26 +147,5 @@ class InterfaceFight(Combat):
 
     def xp_interface(self):
         self.change_text(f"Vous avez gagné 10 XP !")
-        
-
-    def animation_pokemon(self):
-
-        temps_initial = time.time()
-        temps_ecoule = time.time() - temps_initial
-
-        if temps_ecoule < 2.0:
-            self.position_courante += self.vitesse_x if self.deplacement_droite else -self.vitesse_x
-
-            if (
-                self.position_courante >= self.position_initiale + 10
-                or self.position_courante <= self.position_initiale - 10
-            ):
-                self.deplacement_droite = not self.deplacement_droite
-
-        self.fenetre.fill((255, 255, 255))
-
-        self.pokemon_rect.x = self.position_courante
-        self.fenetre.blit(self.pokemon_image, self.pokemon_rect)
-
-        pygame.display.flip()
-        pygame.time.Clock().tick(30)
+    
+    

@@ -13,6 +13,7 @@ class Combat:
         self.pokemon1['health'] = self.pokemon1['base']['HP']
         self.pokemon2['health'] = self.pokemon2['base']['HP']
         self.lvl=1
+        self.xp_gain = 20
 
     def charger_types_pokemon(self):
         with open('Data/Pokemon/Type_chart.json','r',encoding='utf-8') as file:
@@ -26,17 +27,28 @@ class Combat:
             if pokemon['id'] == pokemon_id:
                 return pokemon
             
+    def sauvegarder_pokemon(self, pokemon):
+        with open('Data/Pokemon/Pokedex.json', 'r', encoding='utf-8') as file:
+            pokedex = json.load(file)
+
+        for p in pokedex:
+            if p['id'] == pokemon['id']:
+                p['experience'] = pokemon['experience']
+                p['level'] = pokemon['level']
+                p['experience_to_next_level'] = pokemon['experience_to_next_level']
+
+        with open('Data/Pokemon/Pokedex.json', 'w', encoding='utf-8') as file:
+            json.dump(pokedex, file, ensure_ascii=False, indent=2)
+            
     def calcul_degats(self,attaquant,defenseur):
         type_attaque = attaquant['type'][0]
         type_defenseur = defenseur['type'][0]
         types_pokemon = self.types_pokemon
         multiplicateur_type=types_pokemon[type_attaque.lower()][type_defenseur.lower()]
-        attaque_pokemon=attaquant['base']['Attack']
-        defense=defenseur['base']['Defense']   
         efficacite_type=multiplicateur_type 
         cm=efficacite_type*random.uniform(0.85, 1)
 
-        pv_perdus = ((((((self.lvl*0.4+2)*attaque_pokemon*100)/defense)/50)+2)*cm)
+        pv_perdus = ((((((self.lvl*0.4+2)*attaquant['base']['Attack']*100)/defenseur['base']['Defense'] )/50)+2)*cm)
         pv_perdus = max(1, round(pv_perdus))
         
         return pv_perdus
@@ -51,7 +63,7 @@ class Combat:
             if defenseur['health'] <= 0:
                 self.combat_en_cours = False
                 defenseur['health'] = 0
-
+                
             return degats
         else:
             return 0
@@ -64,13 +76,34 @@ class Combat:
             return True
         else:
             return False
-        
+
+    def gagner_experience(self):
+        self.pokemon1['experience'] += self.xp_gain
+        print(self.pokemon1['experience'])
+
+        if self.pokemon1['experience'] >= self.pokemon1['experience_to_next_level']:
+            print("Oui")
+            self.monter_niveau(self.pokemon1)
+
+        self.sauvegarder_pokemon(self.pokemon1)
+
+    def monter_niveau(self, pokemon):
+        pokemon['level'] += 1
+        self.pokemon1['experience'] = 0
+        pokemon['experience_to_next_level'] = 20
+
+        if pokemon['id'] not in [3, 6, 9]:
+            if pokemon['level'] in [5,10]:
+                pokemon['id'] += 1
+     
     def pokemon_vainqueur(self):
         if self.pokemon1['health'] <= 0:
             self.vainqueur=self.pokemon2['name']['french']
         else:
             self.vainqueur=self.pokemon1['name']['french']
+            self.gagner_experience()
 
+        self.enregistrer_dans_pokedex(self.pokemon1)
         return self.vainqueur
     
     def combat_fini(self):
@@ -87,4 +120,3 @@ class Combat:
         pokemon_id = pokemon['id']
         if pokemon_id not in [p['id'] for p in self.pokedex]:
             self.pokedex.append(pokemon)
-        
