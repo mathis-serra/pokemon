@@ -18,6 +18,8 @@ class Pokedex:
         self.natures = {}
         self.moves = {}
         self.font = pygame.font.Font('Data/Game/Font/pokemon-emerald.ttf', 30)
+        self.pokemon_id = 1
+        
         
         
     def load_pokedex(self):
@@ -35,9 +37,14 @@ class Pokedex:
     def load_moves(self):
         with open("Data/Moves.json", "r", encoding="utf8") as json_file:
             self.moves = json.load(json_file)
+            
     
-    def get_pokemon(self, pokemon_name):
-        return self.pokedex[pokemon_name]
+    
+    def set_pokemon_id(self, pokemon_id):
+        self.pokemon_id = max(1, min(pokemon_id, 386))
+    
+    def get_pokemon_id(self):
+        return self.pokemon_id
     
     def get_type_chart(self):
         return self.type_chart
@@ -51,28 +58,10 @@ class Pokedex:
     def get_font(self):
         return self.font
     
-    def get_pokemon_image(self, pokemon_name):
-        return pygame.image.load(f"Data/Game/Sprites/Pokemon/{pokemon_name}.png")
-    
-    def get_pokemon_back_image(self, pokemon_name):
-        return pygame.image.load(f"Data/Game/Sprites/Pokemon/{pokemon_name}_back.png")
-    
-    def get_pokemon_icon(self, pokemon_name):
-        return pygame.image.load(f"Data/Game/Sprites/Pokemon/{pokemon_name}_icon.png")
-    
-    def get_pokemon_shiny_image(self, pokemon_name):
-        return pygame.image.load(f"Data/Game/Sprites/Pokemon/{pokemon_name}_shiny.png")
-    
-    def get_pokemon_shiny_back_image(self, pokemon_name):
-        return pygame.image.load(f"Data/Game/Sprites/Pokemon/{pokemon_name}_shiny_back.png")
-    
-    def get_pokemon_shiny_icon(self, pokemon_name):
-        return pygame.image.load(f"Data/Game/Sprites/Pokemon/{pokemon_name}_shiny_icon.png")
     
     
     
-    def get_pokemon_image(self, pokemon_id):
-        return pygame.image.load(f"Data/Pokemon_Sprites/front/{pokemon_id}.png")
+    
         
 
     def show_screen(self):
@@ -84,11 +73,11 @@ class Pokedex:
         self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
         button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
         button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
-        
+        self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(1), (900, 200))
         
         button_up.draw(self.SCREEN.display)
         button_down.draw(self.SCREEN.display)
-    
+
         pygame.display.flip()
         
         while True:
@@ -97,12 +86,51 @@ class Pokedex:
                     pygame.quit()
                     exit()
 
-        
-
+                
+                if button_down.draw(self.SCREEN.display):
+                    self.SCREEN.display.fill((0, 0, 0))
+                    self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
+                    button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
+                    button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
+                    
+                    button_up.draw(self.SCREEN.display)
+                    button_down.draw(self.SCREEN.display)
+                    
+                    
+                    self.set_pokemon_id(self.get_pokemon_id() + 1)
+                    self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
+                    
+                    # Replace Bulbasaur sprite with Ivysaur sprite
+                    if self.get_pokemon_id() == self.pokemon_id:
+                        self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
+                        
+                        pygame.display.update()
+                        
+                    
+                    
+                    
+                    
+                if button_up.draw(self.SCREEN.display):
+                    self.SCREEN.display.fill((0, 0, 0))
+                    self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
+                    button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
+                    button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
+                    
+                    button_up.draw(self.SCREEN.display)
+                    button_down.draw(self.SCREEN.display)
+                    
+                    self.set_pokemon_id(self.get_pokemon_id() - 1)
+                    self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
+                    
+                    # Replace Bulbasaur sprite with Ivysaur sprite
+                    if self.get_pokemon_id() == self.pokemon_id:
+                        self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
+                        
+                        pygame.display.update()
 
 
 pokedex = Pokedex()
-pokedex.get_pokemon_image(1)
+
 pokedex.show_screen()
 
 
