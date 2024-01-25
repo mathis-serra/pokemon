@@ -69,12 +69,12 @@ class Pokedex:
         self.load_type_chart()
         self.load_natures()
         self.load_moves()
-        
+        #draw the background
         self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
         button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
         button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
         self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(1), (900, 200))
-        
+        #create the buttons
         button_up.draw(self.SCREEN.display)
         button_down.draw(self.SCREEN.display)
 
@@ -88,7 +88,9 @@ class Pokedex:
 
                 
                 if button_down.draw(self.SCREEN.display):
+                    #This line is necessary to avoid the sprite to be drawn above the previous one
                     self.SCREEN.display.fill((0, 0, 0))
+                    #This is necessary to rebuild the background
                     self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
                     button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
                     button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
@@ -100,7 +102,7 @@ class Pokedex:
                     self.set_pokemon_id(self.get_pokemon_id() + 1)
                     self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
                     
-                    # Replace Bulbasaur sprite with Ivysaur sprite
+                    # Replace the n sprite with the n+1 sprite
                     if self.get_pokemon_id() == self.pokemon_id:
                         self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
                         
@@ -111,7 +113,9 @@ class Pokedex:
                     
                     
                 if button_up.draw(self.SCREEN.display):
+                    #This line is necessary to avoid the sprite to be drawn above the previous one
                     self.SCREEN.display.fill((0, 0, 0))
+                    #This is necessary to rebuild the background
                     self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
                     button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
                     button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
@@ -122,7 +126,7 @@ class Pokedex:
                     self.set_pokemon_id(self.get_pokemon_id() - 1)
                     self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
                     
-                    # Replace Bulbasaur sprite with Ivysaur sprite
+                    # Replace the n sprite with the n+1 sprite
                     if self.get_pokemon_id() == self.pokemon_id:
                         self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
                         
