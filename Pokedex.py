@@ -119,6 +119,12 @@ class Pokedex:
                         name_text = self.font.render(next_pokemon_name, True, (255, 255, 255))
                         self.SCREEN.display.blit(name_text, (150, 120))
                         
+                        # Display the type of the next Pokemon
+                        next_pokemon_type = str(next_pokemon["type"])  # Convert to string
+                        type_text = self.font.render(next_pokemon_type, True, (255, 255, 255))
+                        self.SCREEN.display.blit(type_text, (90, 300))
+                        
+                        
                         pygame.display.update()
                                             
                     
@@ -149,6 +155,11 @@ class Pokedex:
                         next_pokemon_name = next_pokemon["name"]["french"]
                         name_text = self.font.render(next_pokemon_name, True, (255, 255, 255))
                         self.SCREEN.display.blit(name_text, (150, 120))
+                        
+                        
+                        next_pokemon_type = str(next_pokemon["type"])  # Convert to string
+                        type_text = self.font.render(next_pokemon_type, True, (255, 255, 255))
+                        self.SCREEN.display.blit(type_text, (90, 300))
                         
                         
                         pygame.display.update()
