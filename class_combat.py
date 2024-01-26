@@ -14,8 +14,12 @@ class Combat:
         self.pokedex = []
         self.pokemon1['health'] = self.pokemon1['base']['HP']
         self.pokemon2['health'] = self.pokemon2['base']['HP']
+<<<<<<< HEAD
         self.lvl_pokemon1=self.pokemon1["level"]
         self.lvl_pokemon2=5
+=======
+        self.lvl=1
+>>>>>>> da357ed714681f893291de0a3fc57e535c617794
         self.xp_gain = 10
 
     def pokemon1_get(self):

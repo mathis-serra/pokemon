@@ -19,9 +19,13 @@
       "Sp. Defense": 65,
       "Speed": 45
     },
-    "experience": 0,
+    "experience": 80,
     "experience_to_next_level": 20,
+<<<<<<< HEAD
     "level": 3
+=======
+    "level": 5
+>>>>>>> da357ed714681f893291de0a3fc57e535c617794
   },
   {
     "id": 2,
