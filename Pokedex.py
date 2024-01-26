@@ -3,6 +3,7 @@ from Screen import Screen
 from Button import Button
 from Settings import Settings
 from Sprites import Sprites
+import pygame.freetype as ft
 
 import json
 
@@ -19,12 +20,16 @@ class Pokedex:
         self.moves = {}
         self.font = pygame.font.Font('Data/Game/Font/pokemon-emerald.ttf', 30)
         self.pokemon_id = 1
+        self.pokemon = self.load_pokedex()
         
         
         
     def load_pokedex(self):
         with open("Data/Pokedex.json", "r", encoding="utf8") as json_file:
             self.pokedex = json.load(json_file)
+        for pokemon in self.pokedex:
+            if pokemon["id"] == self.pokemon_id:
+                return pokemon
 
     def load_type_chart(self):
         with open("Data/Type_chart.json", "r", encoding="utf8") as json_file:
@@ -86,7 +91,7 @@ class Pokedex:
                     pygame.quit()
                     exit()
 
-                
+                self.font = pygame.font.Font('Data/Game/Font/pokemon-emerald.ttf', 50)
                 if button_down.draw(self.SCREEN.display):
                     #This line is necessary to avoid the sprite to be drawn above the previous one
                     self.SCREEN.display.fill((0, 0, 0))
@@ -100,14 +105,22 @@ class Pokedex:
                     
                     
                     self.set_pokemon_id(self.get_pokemon_id() + 1)
-                    self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
+                    self.pokemon["id"]+=1
+                    pokemon_sprite = self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
                     
                     # Replace the n sprite with the n+1 sprite
                     if self.get_pokemon_id() == self.pokemon_id:
-                        self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
+                        self.SCREEN.display.blit(pokemon_sprite, (900, 200))
+
+                        # Display the name of the next Pokemon
+                        next_pokemon_id = self.get_pokemon_id() + 1
+                        next_pokemon = self.load_pokedex()
+                        next_pokemon_name = next_pokemon["name"]["french"]
+                        name_text = self.font.render(next_pokemon_name, True, (255, 255, 255))
+                        self.SCREEN.display.blit(name_text, (150, 120))
                         
                         pygame.display.update()
-                        
+                                            
                     
                     
                     
@@ -129,6 +142,14 @@ class Pokedex:
                     # Replace the n sprite with the n+1 sprite
                     if self.get_pokemon_id() == self.pokemon_id:
                         self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
+                        
+                         # Display the name of the next Pokemon
+                        next_pokemon_id = self.get_pokemon_id() - 1
+                        next_pokemon = self.load_pokedex()
+                        next_pokemon_name = next_pokemon["name"]["french"]
+                        name_text = self.font.render(next_pokemon_name, True, (255, 255, 255))
+                        self.SCREEN.display.blit(name_text, (150, 120))
+                        
                         
                         pygame.display.update()
 

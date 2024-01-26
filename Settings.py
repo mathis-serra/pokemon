@@ -23,7 +23,7 @@ class Settings:
             self.moves = json.load(json_file)
     
     def get_font(self):
-        return self.font    
+        return self.FONT   
             
 
 
