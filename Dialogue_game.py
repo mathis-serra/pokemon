@@ -91,7 +91,7 @@ class InterfaceFight(Combat):
         name2_text_rect = name2_text.get_rect(center=(130, 100))
         self.fenetre.blit(name2_text, name2_text_rect)
 
-        lvl2_text = self.font_name.render(f"{self.lvl}", True, ("#000000"))
+        lvl2_text = self.font_name.render(f"{self.lvl_pokemon2}", True, ("#000000"))
         lvl2_text_rect = lvl2_text.get_rect(center=(320, 102))
         self.fenetre.blit(lvl2_text, lvl2_text_rect)
 

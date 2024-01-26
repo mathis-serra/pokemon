@@ -14,7 +14,8 @@ class Combat:
         self.pokedex = []
         self.pokemon1['health'] = self.pokemon1['base']['HP']
         self.pokemon2['health'] = self.pokemon2['base']['HP']
-        self.lvl=1
+        self.lvl_pokemon1=self.pokemon1["level"]
+        self.lvl_pokemon2=5
         self.xp_gain = 10
 
     def pokemon1_get(self):
@@ -68,8 +69,9 @@ class Combat:
         multiplicateur_type=types_pokemon[type_attaque.lower()][type_defenseur.lower()]
         efficacite_type=multiplicateur_type 
         cm=efficacite_type*random.uniform(0.85, 1)
+        lvl_attaquant = self.lvl_pokemon1 if attaquant == self.pokemon1 else self.lvl_pokemon2
 
-        pv_perdus = ((((((self.lvl*0.4+2)*attaquant['base']['Attack']*100)/defenseur['base']['Defense'] )/50)+2)*cm)
+        pv_perdus = ((((((lvl_attaquant*0.4+2)*attaquant['base']['Attack']*100)/defenseur['base']['Defense'] )/50)+2)*cm)
         pv_perdus = max(1, round(pv_perdus))
         
         return pv_perdus
