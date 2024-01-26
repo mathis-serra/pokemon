@@ -2,8 +2,10 @@ import json
 import random
 
 class Combat:
-    def __init__(self,pokemon1_id,pokemon2_id):
-        self.pokemon1 = self.charger_pokemon(pokemon1_id)
+    def __init__(self,pokemon2_id):
+        self.id_pokemon = 1
+        self.pokemon1_evolution()
+        self.pokemon1 = self.charger_pokemon(self.id_pokemon)
         self.pokemon2 = self.charger_pokemon(pokemon2_id)
         self.types_pokemon = self.charger_types_pokemon()
         self.tour_actuel = 1
@@ -12,8 +14,23 @@ class Combat:
         self.pokedex = []
         self.pokemon1['health'] = self.pokemon1['base']['HP']
         self.pokemon2['health'] = self.pokemon2['base']['HP']
-        self.lvl=1
-        self.xp_gain = 20
+        self.lvl_pokemon1=self.pokemon1["level"]
+        self.lvl_pokemon2=5
+        self.xp_gain = 10
+
+    def pokemon1_get(self):
+        return self.id_pokemon
+    
+    def pokemon1_evolution(self):
+        pokemon =self.charger_pokemon(1)
+        pokemon2=self.charger_pokemon(2)
+        if pokemon['level']== 5 and pokemon2["level"] < 10:
+            new = self.id_pokemon+1
+            self.id_pokemon=new
+        elif pokemon["level"]==5 and pokemon2["level"]==10 :
+            new = self.id_pokemon+2
+            self.id_pokemon=new
+
 
     def charger_types_pokemon(self):
         with open('Data/Pokemon/Type_chart.json','r',encoding='utf-8') as file:
@@ -26,7 +43,12 @@ class Combat:
         for pokemon in pokedex:
             if pokemon['id'] == pokemon_id:
                 return pokemon
-            
+
+    def charger_evolutions(self):
+        with open('evolution_data.json', 'r', encoding='utf-8') as file:
+            evolution_data = json.load(file)
+        return evolution_data
+     
     def sauvegarder_pokemon(self, pokemon):
         with open('Data/Pokemon/Pokedex.json', 'r', encoding='utf-8') as file:
             pokedex = json.load(file)
@@ -47,8 +69,9 @@ class Combat:
         multiplicateur_type=types_pokemon[type_attaque.lower()][type_defenseur.lower()]
         efficacite_type=multiplicateur_type 
         cm=efficacite_type*random.uniform(0.85, 1)
+        lvl_attaquant = self.lvl_pokemon1 if attaquant == self.pokemon1 else self.lvl_pokemon2
 
-        pv_perdus = ((((((self.lvl*0.4+2)*attaquant['base']['Attack']*100)/defenseur['base']['Defense'] )/50)+2)*cm)
+        pv_perdus = ((((((lvl_attaquant*0.4+2)*attaquant['base']['Attack']*100)/defenseur['base']['Defense'] )/50)+2)*cm)
         pv_perdus = max(1, round(pv_perdus))
         
         return pv_perdus
@@ -82,20 +105,14 @@ class Combat:
         print(self.pokemon1['experience'])
 
         if self.pokemon1['experience'] >= self.pokemon1['experience_to_next_level']:
-            print("Oui")
             self.monter_niveau(self.pokemon1)
 
         self.sauvegarder_pokemon(self.pokemon1)
 
     def monter_niveau(self, pokemon):
         pokemon['level'] += 1
-        self.pokemon1['experience'] = 0
         pokemon['experience_to_next_level'] = 20
 
-        if pokemon['id'] not in [3, 6, 9]:
-            if pokemon['level'] in [5,10]:
-                pokemon['id'] += 1
-     
     def pokemon_vainqueur(self):
         if self.pokemon1['health'] <= 0:
             self.vainqueur=self.pokemon2['name']['french']
