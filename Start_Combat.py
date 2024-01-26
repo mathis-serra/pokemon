@@ -29,7 +29,7 @@ class PokemonGameCombat():
         black = "#000000"
         green = "#a0e8b1"
         white = "#ffffff"
-        interface_fight = InterfaceFight(fenetre,pokemon1_id=1, pokemon2_id=7)
+        interface_fight = InterfaceFight(fenetre, pokemon2_id=7)
         count=0
 
         # Running Game et Event
