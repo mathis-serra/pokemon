@@ -3,8 +3,8 @@ from Class_combat import Combat
 import time
 
 class InterfaceFight(Combat):
-    def __init__(self, fenetre,pokemon2_id):
-        super().__init__(pokemon2_id)
+    def __init__(self, fenetre):
+        super().__init__()
         self.fenetre = fenetre
         self.largeur_fenetre = 800
         self.hauteur_fenetre = 600
@@ -14,7 +14,7 @@ class InterfaceFight(Combat):
         self.font_health = pygame.font.Font(font,23)
         self.dialogue_text = f"Un {self.pokemon2['name']['french']} sauvage apparaît !"
         self.pokemon1_id = self.pokemon1["id"]
-        self.pokemon2_id = pokemon2_id
+        self.pokemon2_id = self.id_pokemon2
         self.bouton_rect = pygame.Rect(50, 400, 200, 40)
         self.bouton_actif = False
         self.bouton_1 = pygame.Rect(450, 450, 140, 50)

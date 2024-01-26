@@ -29,7 +29,7 @@ class PokemonGameCombat():
         black = "#000000"
         green = "#a0e8b1"
         white = "#ffffff"
-        interface_fight = InterfaceFight(fenetre, pokemon2_id=7)
+        interface_fight = InterfaceFight(fenetre)
         count=0
 
         # Running Game et Event
@@ -75,6 +75,7 @@ class PokemonGameCombat():
                         stop = True
 
                     elif event.type == pygame.KEYDOWN and fight==False and start == False and finish == True:
+                   
                         show_screen = False
                     elif event.type == pygame.KEYDOWN and fight==False and start == False:
                         what_will=True

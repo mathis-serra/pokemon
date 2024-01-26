@@ -1,21 +1,22 @@
 import json
 import random
+import os
 
 class Combat:
-    def __init__(self,pokemon2_id):
+    def __init__(self):
         self.id_pokemon = 1
+        self.id_pokemon2 = random.randint(1, 386)
         self.pokemon1_evolution()
         self.pokemon1 = self.charger_pokemon(self.id_pokemon)
-        self.pokemon2 = self.charger_pokemon(pokemon2_id)
+        self.pokemon2 = self.charger_pokemon(self.id_pokemon2)
         self.types_pokemon = self.charger_types_pokemon()
         self.tour_actuel = 1
         self.combat_en_cours = True
         self.vainqueur = None
-        self.pokedex = []
         self.pokemon1['health'] = self.pokemon1['base']['HP']
         self.pokemon2['health'] = self.pokemon2['base']['HP']
         self.lvl_pokemon1=self.pokemon1["level"]
-        self.lvl_pokemon2=5
+        self.lvl_pokemon2=random.randint(1,10)
         self.xp_gain = 10
 
     def pokemon1_get(self):
@@ -31,7 +32,6 @@ class Combat:
             new = self.id_pokemon+2
             self.id_pokemon=new
 
-
     def charger_types_pokemon(self):
         with open('Data/Pokemon/Type_chart.json','r',encoding='utf-8') as file:
             types_pokemon = json.load(file)
@@ -43,12 +43,22 @@ class Combat:
         for pokemon in pokedex:
             if pokemon['id'] == pokemon_id:
                 return pokemon
+            
+    def enregistrer_pokemon_vu(self, pokemon):
+        pokedex_see_path = 'Data/Pokemon/Pokedex_see.json'
 
-    def charger_evolutions(self):
-        with open('evolution_data.json', 'r', encoding='utf-8') as file:
-            evolution_data = json.load(file)
-        return evolution_data
-     
+        if os.path.isfile(pokedex_see_path) and os.path.getsize(pokedex_see_path) > 0:
+            with open(pokedex_see_path, 'r', encoding='utf-8') as file:
+                pokedex_see = json.load(file)
+        else:
+            pokedex_see = []
+
+        if pokemon['id'] not in {p['id'] for p in pokedex_see}:
+            pokedex_see.append(pokemon)
+
+            with open(pokedex_see_path, 'w', encoding='utf-8') as file:
+                json.dump(pokedex_see, file, ensure_ascii=False, indent=2)
+            
     def sauvegarder_pokemon(self, pokemon):
         with open('Data/Pokemon/Pokedex.json', 'r', encoding='utf-8') as file:
             pokedex = json.load(file)
@@ -120,7 +130,8 @@ class Combat:
             self.vainqueur=self.pokemon1['name']['french']
             self.gagner_experience()
 
-        self.enregistrer_dans_pokedex(self.pokemon1)
+        self.enregistrer_pokemon_vu(self.pokemon1)
+        self.enregistrer_pokemon_vu(self.pokemon2)
         return self.vainqueur
     
     def combat_fini(self):
@@ -132,8 +143,3 @@ class Combat:
         else:
             vainqueur = "Steve"
         return vainqueur
-    
-    def enregistrer_dans_pokedex(self, pokemon):
-        pokemon_id = pokemon['id']
-        if pokemon_id not in [p['id'] for p in self.pokedex]:
-            self.pokedex.append(pokemon)
