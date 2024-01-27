@@ -1,4 +1,5 @@
-[{
+[
+  {
     "id": 1,
     "name": {
       "english": "Bulbasaur",
@@ -17,7 +18,10 @@
       "Sp. Attack": 65,
       "Sp. Defense": 65,
       "Speed": 45
-    }
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 3
   },
   {
     "id": 2,
@@ -38,7 +42,10 @@
       "Sp. Attack": 80,
       "Sp. Defense": 80,
       "Speed": 60
-    }
+    },
+    "experience": 30,
+    "experience_to_next_level": 20,
+    "level": 5
   },
   {
     "id": 3,
@@ -59,7 +66,10 @@
       "Sp. Attack": 100,
       "Sp. Defense": 100,
       "Speed": 80
-    }
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 10
   },
   {
     "id": 4,
@@ -79,7 +89,10 @@
       "Sp. Attack": 60,
       "Sp. Defense": 50,
       "Speed": 65
-    }
+    },
+    "experience": 0,
+    "experience_to_next_level": 20,
+    "level": 1
   },
   {
     "id": 5,
@@ -99,7 +112,10 @@
       "Sp. Attack": 80,
       "Sp. Defense": 65,
       "Speed": 80
-    }
+    },
+    "experience": 0,
+    "experience_to_next_level": 20,
+    "level": 6
   },
   {
     "id": 6,
@@ -120,7 +136,10 @@
       "Sp. Attack": 109,
       "Sp. Defense": 85,
       "Speed": 100
-    }
+    },
+    "experience": 0,
+    "experience_to_next_level": 20,
+    "level": 11
   },
   {
     "id": 7,
@@ -140,7 +159,10 @@
       "Sp. Attack": 50,
       "Sp. Defense": 64,
       "Speed": 43
-    }
+    },
+    "experience": 0,
+    "experience_to_next_level": 20,
+    "level": 1
   },
   {
     "id": 8,
@@ -160,7 +182,10 @@
       "Sp. Attack": 65,
       "Sp. Defense": 80,
       "Speed": 58
-    }
+    },
+    "experience": 0,
+    "experience_to_next_level": 20,
+    "level": 6
   },
   {
     "id": 9,
@@ -180,7 +205,10 @@
       "Sp. Attack": 85,
       "Sp. Defense": 105,
       "Speed": 78
-    }
+    },
+    "experience": 0,
+    "experience_to_next_level": 20,
+    "level": 11
   },
   {
     "id": 10,
