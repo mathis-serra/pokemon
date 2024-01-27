@@ -1,6 +1,5 @@
 import pygame
 
-
 class Screen:
     def __init__(self):
         self.display: pygame.display = pygame.display.set_mode((1280, 720))
@@ -9,9 +8,14 @@ class Screen:
         self.framerate: int = 144
         self.deltatime: float = 0.0
 
+        pygame.mixer.init()
+        pygame.mixer.music.load("song/PokemonAudio.mp3")
+        pygame.mixer.music.play(-1)
+
     def update(self) -> None:
         pygame.display.flip()
         pygame.display.update()
+
         self.clock.tick(self.framerate)
         self.display.fill((0, 0, 0))
         self.deltatime = self.clock.get_time()
