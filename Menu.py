@@ -5,11 +5,9 @@ from Settings import *
 from Sprites import Sprites
 from Button import Button
 from Game import Game
-# from Pokedex import Pokedex
+from Pokedex import Pokedex
 
 import sys
-
-
 
 class Menu():
     
@@ -18,8 +16,8 @@ class Menu():
         
         self.SCREEN = Screen()
         self.SETTINGS = Settings()
-    
-    
+        self.pokedex = Pokedex()  # Create an instance of the Pokedex class
+        
     def main_menu(self):
         font = pygame.font.Font("Data/Game/Font/pokemon-emerald.ttf", 36)
         self.SCREEN.display.blit(self.SPRITES.main_menu_pokemon, (0, 0))
@@ -52,11 +50,9 @@ class Menu():
         self.SCREEN.display.blit(text_surface3, text_rect3)
         self.SCREEN.display.blit(text_surface4, text_rect4)
         self.SCREEN.display.blit(text_surface5, text_rect5)
-        # self.SCREEN.update()
         
+        # pygame.display.flip()  # Update the display
         
-            
-
     def run(self):
         self.SPRITES = Sprites()
 
@@ -68,11 +64,9 @@ class Menu():
         self.SCREEN.display.blit(self.SPRITES.menu_bar_pokemon, (160, 510))
 
         state = "menu"
-        # pokedex = Pokedex()
         current_state = self.main_menu()
         
-        
-        while True: 
+        while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     pygame.quit()
@@ -94,23 +88,12 @@ class Menu():
 
                     if pokedex_button.draw(self.SCREEN.display):
                         state = "pokedex"
-                        # current_menu = pokedex
-            # if state == "pokedex":
-                # pokedex.show_screen()
-            # elif state == "menu":
-                # self.main_menu()
+                        current_menu = self.pokedex  # Use the Pokedex instance
+                        
+            if state == "pokedex":
+                self.pokedex.show_screen()  # Call the show_screen() method of the Pokedex instance
+                # pygame.display.update()
+            elif state == "menu":
+                self.main_menu()
             
             pygame.display.flip()
-
-             
-manu = Menu()   
-manu.run()
-          
-
-            
-            
-        
-
-            
-            
-            

@@ -4,7 +4,7 @@ import os
 import cv2
 from Screen import Screen
 import time
-# from Menu import Menu
+from Menu import Menu
 pygame.init()
 
 screen = Screen()
@@ -57,10 +57,11 @@ while True:
         frame_y = (880 - frame.get_height()) // 2  
 
         # Blit the frame onto the window at the center position
-        window.blit(frame, (frame_x, frame_y))
+        if pygame.display.get_active():
+            window.blit(frame, (frame_x, frame_y))
 
-        # Update the display
-        pygame.display.flip()
+            # Update the display
+            pygame.display.flip()
 
     # Check for the user closing the window
     pygame.display.init()  # Initialize the pygame video module
@@ -69,8 +70,8 @@ while True:
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
             pygame.mixer.music.stop() 
             state = "menu"  
-            # menu = Menu()
-            # menu.run()
+            menu = Menu()
+            menu.run()
             pygame.quit()
             
         

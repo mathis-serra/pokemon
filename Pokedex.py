@@ -149,7 +149,7 @@ class Pokedex:
                     if self.get_pokemon_id() == self.pokemon_id:
                         self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
                         
-                         # Display the name of the next Pokemon
+                            # Display the name of the next Pokemon
                         next_pokemon_id = self.get_pokemon_id() - 1
                         next_pokemon = self.load_pokedex()
                         next_pokemon_name = next_pokemon["name"]["french"]
@@ -165,9 +165,8 @@ class Pokedex:
                         pygame.display.update()
 
 
-pokedex = Pokedex()
-
-pokedex.show_screen()
+pok = Pokedex()
+pok.show_screen()
 
 
 
