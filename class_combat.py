@@ -5,7 +5,7 @@ import os
 class Combat:
     def __init__(self):
         self.id_pokemon = 1
-        self.id_pokemon2 = random.randint(1, 386)
+        self.id_pokemon2 = random.randint(4, 386)
         self.pokemon1_evolution()
         self.pokemon1 = self.charger_pokemon(self.id_pokemon)
         self.pokemon2 = self.charger_pokemon(self.id_pokemon2)
