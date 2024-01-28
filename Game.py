@@ -14,7 +14,7 @@ class Game:
         self.player: Player = Player(self.keylistener, self.screen, 512, 288)
         self.map.add_player(self.player)
 
-    def run(self) -> None:
+    def run(self):
         while self.show_screen:
             self.handle_input()
             self.map.update()
