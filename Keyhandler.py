@@ -13,5 +13,5 @@ class KeyListener:
     def key_pressed(self, key: int) -> bool:
         return key in self.keys
 
-    def clear(self) -> None:
+    def clear(self):
         self.keys.clear()

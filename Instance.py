@@ -35,7 +35,7 @@ class Entity(pygame.sprite.Sprite):
         self.hitbox.midbottom = self.rect.midbottom
         self.image = self.all_images[self.direction][self.index_image]
 
-    def move_left(self) -> None:
+    def move_left(self):
         self.animation_walk = True
         self.direction = "left"
 

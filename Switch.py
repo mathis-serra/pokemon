@@ -10,3 +10,5 @@ class Switch:
 
     def check_collision(self, temp_hitbox):
         return self.hitbox.colliderect(temp_hitbox)
+    
+    #this line is a test

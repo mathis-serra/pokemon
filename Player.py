@@ -17,7 +17,7 @@ class Player(Entity):
         self.collisions: list[pygame.Rect] | None = None
         self.change_map: Switch | None = None
 
-    def update(self) -> None:
+    def update(self):
         self.check_input()
         self.check_move()
         super().update()
