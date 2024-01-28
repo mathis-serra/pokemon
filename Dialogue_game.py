@@ -1,5 +1,5 @@
 import pygame
-from Class_combat import Combat
+from class_combat import Combat
 import time
 
 class InterfaceFight(Combat):
