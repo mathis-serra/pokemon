@@ -1,7 +1,7 @@
 import pygame
 import time
 from Dialogue_game import InterfaceFight
-from Class_combat import Combat
+from class_combat import Combat
 
 class PokemonGameCombat():
     def __init__(self):
