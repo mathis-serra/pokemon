@@ -165,8 +165,6 @@ class Pokedex:
                         pygame.display.update()
 
 
-pok = Pokedex()
-pok.show_screen()
 
 
 

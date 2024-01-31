@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "english": "Bulbasaur",
+      "japanese": "フシギダネ",
+      "chinese": "妙蛙种子",
+      "french": "Bulbizarre"
+    },
+    "type": [
+      "Grass",
+      "Poison"
+    ],
+    "base": {
+      "HP": 45,
+      "Attack": 49,
+      "Defense": 49,
+      "Sp. Attack": 65,
+      "Sp. Defense": 65,
+      "Speed": 45
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 3,
+    "health": 0
+  },
+  {
+    "id": 324,
+    "name": {
+      "english": "Torkoal",
+      "japanese": "コータス",
+      "chinese": "煤炭龟",
+      "french": "Chartor"
+    },
+    "type": [
+      "Fire"
+    ],
+    "base": {
+      "HP": 70,
+      "Attack": 85,
+      "Defense": 140,
+      "Sp. Attack": 85,
+      "Sp. Defense": 70,
+      "Speed": 20
+    },
+    "health": 68
+  }
+]
