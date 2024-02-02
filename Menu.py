@@ -6,6 +6,7 @@ from Sprites import Sprites
 from Button import Button
 from Game import Game
 from Pokedex import Pokedex
+from Start_Combat import Start_Combat
 
 import sys
 
@@ -38,11 +39,11 @@ class Menu():
         text_rect = text_surface.get_rect(center=(645, 102))
         text_surface2 = font.render("CONTINUE", True, (255, 255, 255))
         text_rect2 = text_surface2.get_rect(center=(645, 192))
-        text_surface3 = font.render("MYSTERY GIFT", True, (255, 255, 255))
+        text_surface3 = font.render("POKEDEX", True, (255, 255, 255))
         text_rect3 = text_surface3.get_rect(center=(645, 282))
         text_surface4 = font.render("SETTINGS", True, (255, 255, 255))
         text_rect4 = text_surface4.get_rect(center=(645, 372))
-        text_surface5 = font.render("POKEDEX", True, (255, 255, 255))
+        text_surface5 = font.render("MYSTERY GIFTS", True, (255, 255, 255))
         text_rect5= text_surface4.get_rect(center=(645, 462))
         
         self.SCREEN.display.blit(text_surface, text_rect)
@@ -78,7 +79,8 @@ class Menu():
                         game.run()
 
                     if continue_button.draw(self.SCREEN.display):
-                        print("continue_button")
+                        combat = Start_Combat()
+                        combat.run()
 
                     if mysyery_gift_button.draw(self.SCREEN.display):
                         print("mysyery_gift_button")

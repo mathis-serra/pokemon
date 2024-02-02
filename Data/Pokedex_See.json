@@ -1,0 +1,49 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "english": "Bulbasaur",
+      "japanese": "フシギダネ",
+      "chinese": "妙蛙种子",
+      "french": "Bulbizarre"
+    },
+    "type": [
+      "Grass",
+      "Poison"
+    ],
+    "base": {
+      "HP": 45,
+      "Attack": 49,
+      "Defense": 49,
+      "Sp. Attack": 65,
+      "Sp. Defense": 65,
+      "Speed": 45
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 3,
+    "health": 0
+  },
+  {
+    "id": 43,
+    "name": {
+      "english": "Oddish",
+      "japanese": "ナゾノクサ",
+      "chinese": "走路草",
+      "french": "Mystherbe"
+    },
+    "type": [
+      "Grass",
+      "Poison"
+    ],
+    "base": {
+      "HP": 45,
+      "Attack": 50,
+      "Defense": 55,
+      "Sp. Attack": 75,
+      "Sp. Defense": 65,
+      "Speed": 30
+    },
+    "health": 1
+  }
+]
