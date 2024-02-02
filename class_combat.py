@@ -33,19 +33,19 @@ class Combat:
             self.id_pokemon=new
 
     def charger_types_pokemon(self):
-        with open('Data/Pokemon/Type_chart.json','r',encoding='utf-8') as file:
+        with open('Data/Type_chart.json','r',encoding='utf-8') as file:
             types_pokemon = json.load(file)
         return types_pokemon
 
     def charger_pokemon(self, pokemon_id):
-        with open('Data/Pokemon/Pokedex.json','r',encoding='utf-8') as file:
+        with open('Data/Pokedex.json','r',encoding='utf-8') as file:
             pokedex = json.load(file)
         for pokemon in pokedex:
             if pokemon['id'] == pokemon_id:
                 return pokemon
             
     def enregistrer_pokemon_vu(self, pokemon):
-        pokedex_see_path = 'Data/Pokemon/Pokedex_see.json'
+        pokedex_see_path = 'Data/Pokedex_see.json'
 
         if os.path.isfile(pokedex_see_path) and os.path.getsize(pokedex_see_path) > 0:
             with open(pokedex_see_path, 'r', encoding='utf-8') as file:
@@ -60,7 +60,7 @@ class Combat:
                 json.dump(pokedex_see, file, ensure_ascii=False, indent=2)
             
     def sauvegarder_pokemon(self, pokemon):
-        with open('Data/Pokemon/Pokedex.json', 'r', encoding='utf-8') as file:
+        with open('Data/Pokedex.json', 'r', encoding='utf-8') as file:
             pokedex = json.load(file)
 
         for p in pokedex:
@@ -69,7 +69,7 @@ class Combat:
                 p['level'] = pokemon['level']
                 p['experience_to_next_level'] = pokemon['experience_to_next_level']
 
-        with open('Data/Pokemon/Pokedex.json', 'w', encoding='utf-8') as file:
+        with open('Data/Pokedex.json', 'w', encoding='utf-8') as file:
             json.dump(pokedex, file, ensure_ascii=False, indent=2)
             
     def calcul_degats(self,attaquant,defenseur):

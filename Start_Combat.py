@@ -19,10 +19,6 @@ class PokemonGameCombat():
         text_img = pygame.transform.scale(text_img, (largeur_fenetre, hauteur_fenetre - 400))
         pygame.display.set_caption("Pokemon Fight")
 
-        # Son
-        pygame.mixer.music.load("song/WildFight.mp3")
-        pygame.mixer.music.set_volume(1)
-        pygame.mixer.music.play(1)
 
         # Variables
         grey = "#8c8c8c"
@@ -121,5 +117,3 @@ class PokemonGameCombat():
             pygame.display.flip()
 
         pygame.quit()
-
-pokemon=PokemonGameCombat()

@@ -4,6 +4,7 @@ from Instance import Entity
 from Keyhandler import KeyListener
 from Screen import Screen
 from Switch import Switch
+from Start_Combat import PokemonGameCombat
 
 
 class Player(Entity):
@@ -16,6 +17,7 @@ class Player(Entity):
         self.switchs: list[Switch] | None = None
         self.collisions: list[pygame.Rect] | None = None
         self.change_map: Switch | None = None
+        self.combat_triggered: bool = False
 
     def update(self):
         self.check_input()
@@ -61,7 +63,11 @@ class Player(Entity):
         if self.switchs:
             for switch in self.switchs:
                 if switch.check_collision(temp_hitbox):
-                    self.change_map = switch
+                    if switch.type == "combat" and not self.combat_triggered:
+                        self.combat_triggered = True
+                        PokemonGameCombat()  # Instantiate PokemonGameCombat
+                    else:
+                        self.change_map = switch
         return None
 
     def add_collisions(self, collisions):

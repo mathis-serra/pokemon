@@ -1,0 +1,48 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "english": "Bulbasaur",
+      "japanese": "フシギダネ",
+      "chinese": "妙蛙种子",
+      "french": "Bulbizarre"
+    },
+    "type": [
+      "Grass",
+      "Poison"
+    ],
+    "base": {
+      "HP": 45,
+      "Attack": 49,
+      "Defense": 49,
+      "Sp. Attack": 65,
+      "Sp. Defense": 65,
+      "Speed": 45
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 3,
+    "health": 0
+  },
+  {
+    "id": 37,
+    "name": {
+      "english": "Vulpix",
+      "japanese": "ロコン",
+      "chinese": "六尾",
+      "french": "Goupix"
+    },
+    "type": [
+      "Fire"
+    ],
+    "base": {
+      "HP": 38,
+      "Attack": 41,
+      "Defense": 40,
+      "Sp. Attack": 50,
+      "Sp. Defense": 65,
+      "Speed": 65
+    },
+    "health": 25
+  }
+]
