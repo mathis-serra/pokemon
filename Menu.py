@@ -6,7 +6,7 @@ from Sprites import Sprites
 from Button import Button
 from Game import Game
 from Pokedex import Pokedex
-from Start_Combat import Start_Combat
+from Start_Combat import *
 
 import sys
 
@@ -79,8 +79,8 @@ class Menu():
                         game.run()
 
                     if continue_button.draw(self.SCREEN.display):
-                        combat = Start_Combat()
-                        combat.run()
+                        PokemonGameCombat()
+                        
                         
 
                     if mysyery_gift_button.draw(self.SCREEN.display):
