@@ -25,17 +25,27 @@
     "health": 0
   },
   {
+<<<<<<< HEAD
     "id": 324,
     "name": {
       "english": "Torkoal",
       "japanese": "コータス",
       "chinese": "煤炭龟",
       "french": "Chartor"
+=======
+    "id": 37,
+    "name": {
+      "english": "Vulpix",
+      "japanese": "ロコン",
+      "chinese": "六尾",
+      "french": "Goupix"
+>>>>>>> dev
     },
     "type": [
       "Fire"
     ],
     "base": {
+<<<<<<< HEAD
       "HP": 70,
       "Attack": 85,
       "Defense": 140,
@@ -44,5 +54,15 @@
       "Speed": 20
     },
     "health": 68
+=======
+      "HP": 38,
+      "Attack": 41,
+      "Defense": 40,
+      "Sp. Attack": 50,
+      "Sp. Defense": 65,
+      "Speed": 65
+    },
+    "health": 25
+>>>>>>> dev
   }
 ]

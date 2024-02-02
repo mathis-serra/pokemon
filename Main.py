@@ -31,8 +31,8 @@ pygame.mixer.music.load('Data/Intro/pokemon_sound.mp3')
 pygame.mixer.music.play(-1)  # -1 means play the music on loop
 
 # Read and display each frame of the video
-while True:
-    state ="intro"
+intro = True
+while intro:
     ret, frame = cap.read()
     if not ret:
         # If the video has ended, break out of the loop
@@ -69,9 +69,9 @@ while True:
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN or event.type == pygame.QUIT:
             pygame.mixer.music.stop() 
-            state = "menu"  
             menu = Menu()
             menu.run()
+            intro = False
             pygame.quit()
             
         

@@ -83,7 +83,6 @@ class Pokedex:
         button_up.draw(self.SCREEN.display)
         button_down.draw(self.SCREEN.display)
 
-        pygame.display.flip()
         
         while True:
             for event in pygame.event.get():
