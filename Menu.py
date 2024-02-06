@@ -6,7 +6,7 @@ from Sprites import Sprites
 from Button import Button
 from Game import Game
 from Pokedex import Pokedex
-from Start_Combat import *
+from Start_Combat import PokemonGameCombat
 
 import sys
 
@@ -66,7 +66,6 @@ class Menu():
 
         state = "menu"
         current_state = self.main_menu()
-        
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
@@ -80,9 +79,6 @@ class Menu():
 
                     if continue_button.draw(self.SCREEN.display):
                         PokemonGameCombat()
-                        
-                        
-
                     if mysyery_gift_button.draw(self.SCREEN.display):
                         print("mysyery_gift_button")
 
