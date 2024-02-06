@@ -4,7 +4,7 @@ import os
 
 class Combat:
     def __init__(self):
-        self.id_pokemon = 1
+        self.id_pokemon = 148
         self.id_pokemon2 = random.randint(1, 386)
         self.pokemon1_evolution()
         self.pokemon1 = self.charger_pokemon(self.id_pokemon)
@@ -23,9 +23,9 @@ class Combat:
         return self.id_pokemon
     
     def pokemon1_evolution(self):
-        pokemon =self.charger_pokemon(1)
+        pokemon =self.charger_pokemon(148)
         pokemon2=self.charger_pokemon(2)
-        if pokemon['level']== 5 and pokemon2["level"] < 10:
+        if pokemon['level']== 55 and pokemon2["level"] < 10:
             new = self.id_pokemon+1
             self.id_pokemon=new
         elif pokemon["level"]==5 and pokemon2["level"]==10 :

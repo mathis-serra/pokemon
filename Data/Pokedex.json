@@ -3050,7 +3050,10 @@
       "Sp. Attack": 70,
       "Sp. Defense": 70,
       "Speed": 70
-    }
+    },
+    "experience": 20,
+    "experience_to_next_level": 20,
+    "level": 54
   },
   {
     "id": 149,
@@ -3071,7 +3074,10 @@
       "Sp. Attack": 100,
       "Sp. Defense": 100,
       "Speed": 80
-    }
+    },
+    "experience": 120,
+    "experience_to_next_level": 20,
+    "level": 55
   },
   {
     "id": 150,

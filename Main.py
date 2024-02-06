@@ -5,6 +5,7 @@ import cv2
 from Screen import Screen
 import time
 from Menu import Menu
+
 pygame.init()
 
 screen = Screen()
@@ -64,7 +65,6 @@ while intro:
             pygame.display.flip()
 
     # Check for the user closing the window
-    pygame.display.init()  # Initialize the pygame video module
 
     for event in pygame.event.get():
         if event.type == pygame.MOUSEBUTTONDOWN or event.type == pygame.KEYDOWN or event.type == pygame.QUIT:

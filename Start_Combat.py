@@ -69,9 +69,8 @@ class PokemonGameCombat():
                     elif event.type == pygame.KEYDOWN and finish_1==True:
                         interface_fight.xp_interface()
                         stop = True
-
+                        self.return_to_menu()
                     elif event.type == pygame.KEYDOWN and fight==False and start == False and finish == True:
-                   
                         show_screen = False
                     elif event.type == pygame.KEYDOWN and fight==False and start == False:
                         what_will=True
@@ -94,6 +93,7 @@ class PokemonGameCombat():
                         pass
                     if interface_fight.bouton_4.collidepoint(mouse_x, mouse_y):
                         show_screen = False
+                        self.return_to_menu()
                         
             current_time = time.time()
             elapsed_time = current_time - start_time
@@ -117,3 +117,8 @@ class PokemonGameCombat():
             pygame.display.flip()
 
         pygame.quit()
+
+    def return_to_menu(self):
+        from Menu import Menu
+        menu = Menu()
+        menu.run()
