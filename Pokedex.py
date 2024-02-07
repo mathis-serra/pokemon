@@ -42,13 +42,7 @@ class Pokedex:
     def load_moves(self):
         with open("Data/Moves.json", "r", encoding="utf8") as json_file:
             self.moves = json.load(json_file)
-          
-    def pokemon_seen (self):   
-        with open("Data/Pokedex_See.json", "r", encoding="utf8") as json_file:
-            self.pokedex_seen = json.load(json_file)
-            return self.pokedex_seen
-            
-    
+             
     
     def set_pokemon_id(self, pokemon_id):
         self.pokemon_id = max(1, min(pokemon_id, 386))
@@ -128,21 +122,7 @@ class Pokedex:
                         type_text = self.font.render(next_pokemon_type, True, (255, 255, 255))
                         self.SCREEN.display.blit(type_text, (90, 300))
                         
-                        # Load the pokedex_seen.json file
                         
-
-                        # Obtenir les données de Pokemon seen
-                        pokemon_seen_data = self.pokemon_seen()
-
-                        # Vérifier si le prochain pokemon est vu ou non
-                        next_pokemon_seen = str(next_pokemon_id) in pokemon_seen_data
-
-                        # Afficher le statut vu/non vu du prochain Pokémon
-                        seen_text = "[seen]" if next_pokemon_seen else "[not seen]"
-                        seen_text_render = self.font.render(seen_text, True, (255, 255, 255))
-                        self.SCREEN.display.blit(seen_text_render, (90, 600))  
-
-                                                
                         pygame.display.update()
                                             
                     
