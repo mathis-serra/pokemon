@@ -374,5 +374,69 @@
       "Speed": 100
     },
     "health": 0
+  },
+  {
+    "id": 360,
+    "name": {
+      "english": "Wynaut",
+      "japanese": "ソーナノ",
+      "chinese": "小果然",
+      "french": "Okéoké"
+    },
+    "type": [
+      "Psychic"
+    ],
+    "base": {
+      "HP": 95,
+      "Attack": 23,
+      "Defense": 48,
+      "Sp. Attack": 23,
+      "Sp. Defense": 48,
+      "Speed": 23
+    },
+    "health": 0
+  },
+  {
+    "id": 343,
+    "name": {
+      "english": "Baltoy",
+      "japanese": "ヤジロン",
+      "chinese": "天秤偶",
+      "french": "Balbuto"
+    },
+    "type": [
+      "Ground",
+      "Psychic"
+    ],
+    "base": {
+      "HP": 40,
+      "Attack": 40,
+      "Defense": 55,
+      "Sp. Attack": 40,
+      "Sp. Defense": 70,
+      "Speed": 55
+    },
+    "health": 0
+  },
+  {
+    "id": 25,
+    "name": {
+      "english": "Pikachu",
+      "japanese": "ピカチュウ",
+      "chinese": "皮卡丘",
+      "french": "Pikachu"
+    },
+    "type": [
+      "Electric"
+    ],
+    "base": {
+      "HP": 35,
+      "Attack": 55,
+      "Defense": 40,
+      "Sp. Attack": 50,
+      "Sp. Defense": 50,
+      "Speed": 90
+    },
+    "health": 0
   }
 ]
