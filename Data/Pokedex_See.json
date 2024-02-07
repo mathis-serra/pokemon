@@ -1,0 +1,378 @@
+[
+  {
+    "id": 1,
+    "name": {
+      "english": "Bulbasaur",
+      "japanese": "フシギダネ",
+      "chinese": "妙蛙种子",
+      "french": "Bulbizarre"
+    },
+    "type": [
+      "Grass",
+      "Poison"
+    ],
+    "base": {
+      "HP": 45,
+      "Attack": 49,
+      "Defense": 49,
+      "Sp. Attack": 65,
+      "Sp. Defense": 65,
+      "Speed": 45
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 3,
+    "health": 0
+  },
+  {
+    "id": 134,
+    "name": {
+      "english": "Vaporeon",
+      "japanese": "シャワーズ",
+      "chinese": "水伊布",
+      "french": "Aquali"
+    },
+    "type": [
+      "Water"
+    ],
+    "base": {
+      "HP": 130,
+      "Attack": 65,
+      "Defense": 60,
+      "Sp. Attack": 110,
+      "Sp. Defense": 95,
+      "Speed": 65
+    },
+    "health": 23
+  },
+  {
+    "id": 154,
+    "name": {
+      "english": "Meganium",
+      "japanese": "メガニウム",
+      "chinese": "大竺葵",
+      "french": "Méganium"
+    },
+    "type": [
+      "Grass"
+    ],
+    "base": {
+      "HP": 80,
+      "Attack": 82,
+      "Defense": 100,
+      "Sp. Attack": 83,
+      "Sp. Defense": 100,
+      "Speed": 80
+    },
+    "health": 52
+  },
+  {
+    "id": 241,
+    "name": {
+      "english": "Miltank",
+      "japanese": "ミルタンク",
+      "chinese": "大奶罐",
+      "french": "Écrémeuh"
+    },
+    "type": [
+      "Normal"
+    ],
+    "base": {
+      "HP": 95,
+      "Attack": 80,
+      "Defense": 105,
+      "Sp. Attack": 40,
+      "Sp. Defense": 70,
+      "Speed": 100
+    },
+    "health": 77
+  },
+  {
+    "id": 148,
+    "name": {
+      "english": "Dragonair",
+      "japanese": "ハクリュー",
+      "chinese": "哈克龙",
+      "french": "Draco"
+    },
+    "type": [
+      "Dragon"
+    ],
+    "base": {
+      "HP": 61,
+      "Attack": 84,
+      "Defense": 65,
+      "Sp. Attack": 70,
+      "Sp. Defense": 70,
+      "Speed": 70
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 3,
+    "health": 0
+  },
+  {
+    "id": 149,
+    "name": {
+      "english": "Dragonite",
+      "japanese": "カイリュー",
+      "chinese": "快龙",
+      "french": "Dracolosse"
+    },
+    "type": [
+      "Dragon",
+      "Flying"
+    ],
+    "base": {
+      "HP": 91,
+      "Attack": 134,
+      "Defense": 95,
+      "Sp. Attack": 100,
+      "Sp. Defense": 100,
+      "Speed": 80
+    },
+    "experience": 10,
+    "experience_to_next_level": 20,
+    "level": 5,
+    "health": 64
+  },
+  {
+    "id": 260,
+    "name": {
+      "english": "Swampert",
+      "japanese": "ラグラージ",
+      "chinese": "巨沼怪",
+      "french": "Laggron"
+    },
+    "type": [
+      "Water",
+      "Ground"
+    ],
+    "base": {
+      "HP": 100,
+      "Attack": 110,
+      "Defense": 90,
+      "Sp. Attack": 85,
+      "Sp. Defense": 90,
+      "Speed": 60
+    },
+    "health": 0
+  },
+  {
+    "id": 78,
+    "name": {
+      "english": "Rapidash",
+      "japanese": "ギャロップ",
+      "chinese": "烈焰马",
+      "french": "Galopa"
+    },
+    "type": [
+      "Fire"
+    ],
+    "base": {
+      "HP": 65,
+      "Attack": 100,
+      "Defense": 70,
+      "Sp. Attack": 80,
+      "Sp. Defense": 80,
+      "Speed": 105
+    },
+    "health": 0
+  },
+  {
+    "id": 4,
+    "name": {
+      "english": "Charmander",
+      "japanese": "ヒトカゲ",
+      "chinese": "小火龙",
+      "french": "Salamèche"
+    },
+    "type": [
+      "Fire"
+    ],
+    "base": {
+      "HP": 39,
+      "Attack": 52,
+      "Defense": 43,
+      "Sp. Attack": 60,
+      "Sp. Defense": 50,
+      "Speed": 65
+    },
+    "experience": 0,
+    "experience_to_next_level": 20,
+    "level": 1,
+    "health": 0
+  },
+  {
+    "id": 30,
+    "name": {
+      "english": "Nidorina",
+      "japanese": "ニドリーナ",
+      "chinese": "尼多娜",
+      "french": "Nidorina"
+    },
+    "type": [
+      "Poison"
+    ],
+    "base": {
+      "HP": 70,
+      "Attack": 62,
+      "Defense": 67,
+      "Sp. Attack": 55,
+      "Sp. Defense": 55,
+      "Speed": 56
+    },
+    "health": 0
+  },
+  {
+    "id": 48,
+    "name": {
+      "english": "Venonat",
+      "japanese": "コンパン",
+      "chinese": "毛球",
+      "french": "Mimitoss"
+    },
+    "type": [
+      "Bug",
+      "Poison"
+    ],
+    "base": {
+      "HP": 60,
+      "Attack": 55,
+      "Defense": 50,
+      "Sp. Attack": 40,
+      "Sp. Defense": 55,
+      "Speed": 45
+    },
+    "health": 0
+  },
+  {
+    "id": 155,
+    "name": {
+      "english": "Cyndaquil",
+      "japanese": "ヒノアラシ",
+      "chinese": "火球鼠",
+      "french": "Héricendre"
+    },
+    "type": [
+      "Fire"
+    ],
+    "base": {
+      "HP": 39,
+      "Attack": 52,
+      "Defense": 43,
+      "Sp. Attack": 60,
+      "Sp. Defense": 50,
+      "Speed": 65
+    },
+    "health": 0
+  },
+  {
+    "id": 385,
+    "name": {
+      "english": "Jirachi",
+      "japanese": "ジラーチ",
+      "chinese": "基拉祈",
+      "french": "Jirachi"
+    },
+    "type": [
+      "Steel",
+      "Psychic"
+    ],
+    "base": {
+      "HP": 100,
+      "Attack": 100,
+      "Defense": 100,
+      "Sp. Attack": 100,
+      "Sp. Defense": 100,
+      "Speed": 100
+    },
+    "health": 0
+  },
+  {
+    "id": 250,
+    "name": {
+      "english": "Ho-Oh",
+      "japanese": "ホウオウ",
+      "chinese": "凤王",
+      "french": "Ho-Oh"
+    },
+    "type": [
+      "Fire",
+      "Flying"
+    ],
+    "base": {
+      "HP": 106,
+      "Attack": 130,
+      "Defense": 90,
+      "Sp. Attack": 110,
+      "Sp. Defense": 154,
+      "Speed": 90
+    },
+    "health": 0
+  },
+  {
+    "id": 37,
+    "name": {
+      "english": "Vulpix",
+      "japanese": "ロコン",
+      "chinese": "六尾",
+      "french": "Goupix"
+    },
+    "type": [
+      "Fire"
+    ],
+    "base": {
+      "HP": 38,
+      "Attack": 41,
+      "Defense": 40,
+      "Sp. Attack": 50,
+      "Sp. Defense": 65,
+      "Speed": 65
+    },
+    "health": 0
+  },
+  {
+    "id": 273,
+    "name": {
+      "english": "Seedot",
+      "japanese": "タネボー",
+      "chinese": "橡实果",
+      "french": "Grainipiot"
+    },
+    "type": [
+      "Grass"
+    ],
+    "base": {
+      "HP": 40,
+      "Attack": 40,
+      "Defense": 50,
+      "Sp. Attack": 30,
+      "Sp. Defense": 30,
+      "Speed": 30
+    },
+    "health": 0
+  },
+  {
+    "id": 330,
+    "name": {
+      "english": "Flygon",
+      "japanese": "フライゴン",
+      "chinese": "沙漠蜻蜓",
+      "french": "Libégon"
+    },
+    "type": [
+      "Ground",
+      "Dragon"
+    ],
+    "base": {
+      "HP": 80,
+      "Attack": 100,
+      "Defense": 80,
+      "Sp. Attack": 80,
+      "Sp. Defense": 80,
+      "Speed": 100
+    },
+    "health": 0
+  }
+]

@@ -3051,9 +3051,9 @@
       "Sp. Defense": 70,
       "Speed": 70
     },
-    "experience": 20,
+    "experience": 30,
     "experience_to_next_level": 20,
-    "level": 54
+    "level": 55
   },
   {
     "id": 149,
@@ -3075,9 +3075,9 @@
       "Sp. Defense": 100,
       "Speed": 80
     },
-    "experience": 120,
+    "experience": 140,
     "experience_to_next_level": 20,
-    "level": 55
+    "level": 57
   },
   {
     "id": 150,
