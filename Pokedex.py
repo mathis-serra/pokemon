@@ -22,8 +22,6 @@ class Pokedex:
         self.pokemon_id = 1
         self.pokemon = self.load_pokedex()
         
-        
-        
     def load_pokedex(self):
         with open("Data/Pokedex.json", "r", encoding="utf8") as json_file:
             self.pokedex = json.load(json_file)
@@ -43,13 +41,10 @@ class Pokedex:
         with open("Data/Moves.json", "r", encoding="utf8") as json_file:
             self.moves = json.load(json_file)
           
-    def pokemon_seen (self):   
+    def pokemon_seen(self):   
         with open("Data/Pokedex_See.json", "r", encoding="utf8") as json_file:
-            self.pokedex_seen = json.load(json_file)
-            return self.pokedex_seen
+           return json.load(json_file)
             
-    
-    
     def set_pokemon_id(self, pokemon_id):
         self.pokemon_id = max(1, min(pokemon_id, 386))
     
@@ -68,121 +63,83 @@ class Pokedex:
     def get_font(self):
         return self.font
     
-    
-    
-    
-    
-        
-
     def show_screen(self):
+        # Chargement des données initiales
         self.load_pokedex()
         self.load_type_chart()
         self.load_natures()
         self.load_moves()
-        #draw the background
+
+        # Affichage de l'interface graphique
         self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
-        button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
+        button_up = Button(530, 180, self.SPRITES.pokedex_button_up, 1)
         button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
-        self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(1), (900, 200))
-        #create the buttons
         button_up.draw(self.SCREEN.display)
         button_down.draw(self.SCREEN.display)
 
-        
+        # Afficher les informations de Bulbizarre au démarrage
+        self.update_pokemon_info()
+
         while True:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
-                    pygame.quit()
-                    exit()
+                    self.return_to_menu()
+                    
 
-                self.font = pygame.font.Font('Data/Game/Font/pokemon-emerald.ttf', 50)
-                if button_down.draw(self.SCREEN.display):
-                    #This line is necessary to avoid the sprite to be drawn above the previous one
-                    self.SCREEN.display.fill((0, 0, 0))
-                    #This is necessary to rebuild the background
-                    self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
-                    button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
-                    button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
-                    
-                    button_up.draw(self.SCREEN.display)
-                    button_down.draw(self.SCREEN.display)
-                    
-                    
-                    self.set_pokemon_id(self.get_pokemon_id() + 1)
-                    self.pokemon["id"]+=1
-                    pokemon_sprite = self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
-                    
-                    # Replace the n sprite with the n+1 sprite
-                    if self.get_pokemon_id() == self.pokemon_id:
-                        self.SCREEN.display.blit(pokemon_sprite, (900, 200))
+            # Déplacement vers le Pokémon suivant
+            if button_down.draw(self.SCREEN.display):
+                self.set_pokemon_id(self.get_pokemon_id() + 1)
+                self.update_pokemon_info()
 
-                        # Display the name of the next Pokemon
-                        next_pokemon_id = self.get_pokemon_id() + 1
-                        next_pokemon = self.load_pokedex()
-                        next_pokemon_name = next_pokemon["name"]["french"]
-                        name_text = self.font.render(next_pokemon_name, True, (255, 255, 255))
-                        self.SCREEN.display.blit(name_text, (150, 120))
-                        
-                        # Display the type of the next Pokemon
-                        next_pokemon_type = str(next_pokemon["type"])  # Convert to string
-                        type_text = self.font.render(next_pokemon_type, True, (255, 255, 255))
-                        self.SCREEN.display.blit(type_text, (90, 300))
-                        
-                        # Load the pokedex_seen.json file
-                        
+            # Déplacement vers le Pokémon précédent
+            if button_up.draw(self.SCREEN.display):
+                self.set_pokemon_id(self.get_pokemon_id() - 1)
+                self.update_pokemon_info()
 
-                        # Obtenir les données de Pokemon seen
-                        pokemon_seen_data = self.pokemon_seen()
+            pygame.display.update()
 
-                        # Vérifier si le prochain pokemon est vu ou non
-                        next_pokemon_seen = str(next_pokemon_id) in pokemon_seen_data
+    def update_pokemon_info(self):
+        # Effacer l'écran
+        self.SCREEN.display.fill((0, 0, 0))
 
-                        # Afficher le statut vu/non vu du prochain Pokémon
-                        seen_text = "[seen]" if next_pokemon_seen else "[not seen]"
-                        seen_text_render = self.font.render(seen_text, True, (255, 255, 255))
-                        self.SCREEN.display.blit(seen_text_render, (90, 600))  
+        # Réafficher le fond d'écran
+        self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
 
-                                                
-                        pygame.display.update()
-                                            
-                    
-                    
-                    
-                    
-                if button_up.draw(self.SCREEN.display):
-                    #This line is necessary to avoid the sprite to be drawn above the previous one
-                    self.SCREEN.display.fill((0, 0, 0))
-                    #This is necessary to rebuild the background
-                    self.SCREEN.display.blit(self.SPRITES.pokedex_pokemon, (0, 0))
-                    button_up = Button(530,180, self.SPRITES.pokedex_button_up, 1)
-                    button_down = Button(530, 480, self.SPRITES.pokedex_button_down, 1)
-                    
-                    button_up.draw(self.SCREEN.display)
-                    button_down.draw(self.SCREEN.display)
-                    
-                    self.set_pokemon_id(self.get_pokemon_id() - 1)
-                    self.SPRITES.get_pokemon_sprite(self.get_pokemon_id())
-                    
-                    # Replace the n sprite with the n+1 sprite
-                    if self.get_pokemon_id() == self.pokemon_id:
-                        self.SCREEN.display.blit(self.SPRITES.get_pokemon_sprite(self.get_pokemon_id()), (900, 200))
-                        
-                            # Display the name of the next Pokemon
-                        next_pokemon_id = self.get_pokemon_id() - 1
-                        next_pokemon = self.load_pokedex()
-                        next_pokemon_name = next_pokemon["name"]["french"]
-                        name_text = self.font.render(next_pokemon_name, True, (255, 255, 255))
-                        self.SCREEN.display.blit(name_text, (150, 120))
-                        
-                        
-                        next_pokemon_type = str(next_pokemon["type"])  # Convert to string
-                        type_text = self.font.render(next_pokemon_type, True, (255, 255, 255))
-                        self.SCREEN.display.blit(type_text, (90, 300))
-                        
-                        
-                        pygame.display.update()
+        # Chargement des informations sur le Pokémon actuel
+        self.pokemon = self.load_pokedex()
+        pokemon_id = self.get_pokemon_id()
+        pokemon_sprite = self.SPRITES.get_pokemon_sprite(pokemon_id)
+
+        # Affichage du sprite du Pokémon
+        self.SCREEN.display.blit(pokemon_sprite, (900, 200))
+
+        # Affichage du nom et du type du Pokémon
+        pokemon_name = self.pokemon["name"]["french"]
+        pokemon_type = str(self.pokemon["type"])
+        self.display_text(pokemon_name, 150, 120)
+        self.display_text(pokemon_type, 90, 300)
+
+        # Vérification du statut vu/non vu du Pokémon
+        pokemon_seen_data = self.pokemon_seen()
+        next_pokemon_seen = pokemon_id in pokemon_seen_data
+        seen_text = "[seen]" if next_pokemon_seen else "[not seen]"
+        self.display_text(seen_text, 90, 600)
 
 
 
+    def display_text(self, text, x, y):
+        #dispalay text on the screen on coordinates x and y
+        text_render = self.font.render(text, True, (255, 255, 255))
+        self.SCREEN.display.blit(text_render, (x, y))
+        
+        
+        # pokemon_seen_data = self.pokemon_seen()
+        # print(pokemon_seen_data)
 
 
+# pok = Pokedex()
+# pok.show_screen()
+    def return_to_menu(self):
+            from Menu import Menu
+            menu = Menu()
+            menu.run()
