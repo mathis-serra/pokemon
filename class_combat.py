@@ -58,6 +58,10 @@ class Combat:
 
             with open(pokedex_see_path, 'w', encoding='utf-8') as file:
                 json.dump(pokedex_see, file, ensure_ascii=False, indent=2)
+
+    def vider_fichier_json(self, chemin_fichier):
+        with open(chemin_fichier, 'w') as file:
+            file.write('')
             
     def sauvegarder_pokemon(self, pokemon):
         with open('Data/Pokedex.json', 'r', encoding='utf-8') as file:

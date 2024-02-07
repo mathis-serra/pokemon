@@ -7,6 +7,7 @@ from Button import Button
 from Game import Game
 from Pokedex import Pokedex
 from Start_Combat import PokemonGameCombat
+from class_combat import Combat
 
 import sys
 
@@ -76,6 +77,8 @@ class Menu():
                     if new_game_button.draw(self.SCREEN.display):
                         game = Game()
                         game.run()
+                        combat = Combat()
+                        combat.vider_fichier_json("Data/Pokedex_See.json")
 
                     if continue_button.draw(self.SCREEN.display):
                         PokemonGameCombat()
