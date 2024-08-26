@@ -21,6 +21,8 @@ class Menu():
         self.pokedex = Pokedex()  # Create an instance of the Pokedex class
         
     def main_menu(self):
+
+        #display the all screen with all the sprites 
         font = pygame.font.Font("Data/Game/Font/pokemon-emerald.ttf", 36)
         self.SCREEN.display.blit(self.SPRITES.main_menu_pokemon, (0, 0))
         new_game_button = Button(160, 60, self.SPRITES.menu_bar_pokemon, 1) 
@@ -79,7 +81,8 @@ class Menu():
                         game.run()
                         combat = Combat()
                         combat.vider_fichier_json("Data/Pokedex_See.json")
-
+                        combat.update_pokedex_levels()        
+                    # lunch the combat 
                     if continue_button.draw(self.SCREEN.display):
                         PokemonGameCombat()
                     if mysyery_gift_button.draw(self.SCREEN.display):
@@ -91,6 +94,7 @@ class Menu():
                     if pokedex_button.draw(self.SCREEN.display):
                         state = "pokedex"
                         current_menu = self.pokedex  # Use the Pokedex instance
+                        
                         
             if state == "pokedex":
                 self.pokedex.show_screen()  # Call the show_screen() method of the Pokedex instance

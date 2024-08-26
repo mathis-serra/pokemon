@@ -47,6 +47,7 @@ class PokemonGameCombat():
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     show_screen = False
+                    self.return_to_menu()
                 if event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RETURN and fight == False and start == True:
                         interface_fight.change_text(f"Je t'envoie {interface_fight.pokemon1['name']['french']} !")

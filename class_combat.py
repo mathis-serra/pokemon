@@ -44,6 +44,19 @@ class Combat:
             if pokemon['id'] == pokemon_id:
                 return pokemon
             
+    def update_pokedex_levels(self):
+        with open("Data/Pokedex.json", "r+", encoding="utf8") as json_file:
+            pokedex_data = json.load(json_file)
+            for pokemon in pokedex_data:
+                if pokemon["name"]["french"] == "Draco":
+                    pokemon["level"] = 54
+                if pokemon["name"]["french"] == "Dracolosse":
+                    pokemon["level"] = 55
+
+            json_file.seek(0)
+            json_file.truncate()
+            json.dump(pokedex_data, json_file, indent=4)
+            
     def enregistrer_pokemon_vu(self, pokemon):
         pokedex_see_path = 'Data/Pokedex_see.json'
 
