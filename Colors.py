@@ -21,3 +21,4 @@ class Colors:
         self.LIGHT_RED = (255, 128, 128)
         self.LIGHT_PURPLE = (255, 128, 255)
         self.LIGHT_CYAN = (128, 255, 255)
+        self.DARK_BLUE = (0, 0, 128)
