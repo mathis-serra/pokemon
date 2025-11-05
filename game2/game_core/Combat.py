@@ -58,18 +58,18 @@ class Combat:
         pygame.display.flip()
 
     def _render_terrain(self):
-        # Scale background to fit screen properly
-        background = pygame.transform.scale(self.SPRITES.forest_background, (self.screen_w, self.screen_h))
-        self.SCREEN.display.blit(background, (0, 0))
+        # Background should be at the top, not stretched to full screen
+        self.SCREEN.display.fill((0, 0, 0))  # Black background
+        self.SCREEN.display.blit(self.SPRITES.forest_background, (0, 0))
 
     def _render_trainer(self):
         if self.trainer_left_screen or not self.trainer_sprite:
             return
 
-        box_h = self.SPRITES.bottom_message_box.get_height()
         rect = self.trainer_sprite.get_rect()
-        # Position trainer on the ground, above the message box
-        rect.bottomleft = (int(self.trainer_x), self.screen_h - box_h)
+        # Position trainer on the ground (background is 500px tall)
+        background_h = self.SPRITES.forest_background.get_height()
+        rect.midbottom = (int(self.trainer_x) + rect.width // 2, background_h)
         self.SCREEN.display.blit(self.trainer_sprite, rect)
 
     def _update_trainer(self, dt_ms: int) -> None:
@@ -87,7 +87,7 @@ class Combat:
         if not self.trainer_left_screen:
             return
 
-        box_h = self.SPRITES.bottom_message_box.get_height()
-        # Position player's pokemon on the left side, above the message box
-        self.player_rect.bottomleft = (100, self.screen_h - box_h - 10)
+        # Position player's pokemon on the left side, on the ground
+        background_h = self.SPRITES.forest_background.get_height()
+        self.player_rect.midbottom = (180, background_h - 20)
         self.SCREEN.display.blit(self.player_sprite, self.player_rect)
