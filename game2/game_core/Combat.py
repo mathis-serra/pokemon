@@ -87,7 +87,7 @@ class Combat:
         if not self.trainer_left_screen:
             return
 
-        # Position player's pokemon on the left side, on the ground
-        background_h = self.SPRITES.forest_background.get_height()
-        self.player_rect.midbottom = (180, background_h - 20)
+        # Position player's pokemon on the left ground platform
+        # Lower the pokemon a bit more to stand properly on the ground
+        self.player_rect.midbottom = (260, 550)
         self.SCREEN.display.blit(self.player_sprite, self.player_rect)

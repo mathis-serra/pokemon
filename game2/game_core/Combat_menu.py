@@ -31,7 +31,7 @@ class Combat_menu:
 
         # Draw the choice box on the right side inside the message box
         choice_rect = self.choice_box.get_rect()
-        choice_rect.midright = (screen_w - 30, screen_h - 110)
+        choice_rect.bottomright = (screen_w - 30, screen_h - 30)
         screen.blit(self.choice_box, choice_rect)
 
         # Calculate grid layout for menu options (2x2 grid)
@@ -39,28 +39,29 @@ class Combat_menu:
         rows = 2
         cell_w = choice_rect.width // columns
         cell_h = choice_rect.height // rows
+        
+        # Padding from the left edge of each cell for text
+        text_offset_x = 60
+        text_offset_y = 0
 
         for index, option in enumerate(self.options):
             row = index // columns
             col = index % columns
             
-            # Calculate position in the grid
-            cell_x = choice_rect.x + col * cell_w + 20
-            cell_y = choice_rect.y + row * cell_h + (cell_h - 40) // 2
+            # Calculate position for each cell - align text to left within cell
+            cell_x = choice_rect.x + col * cell_w + text_offset_x
+            cell_y = choice_rect.y + row * cell_h + cell_h // 2 + text_offset_y
             
-            # Use blue bar for selected option, white bar for others
-            if index == self.selected_option:
-                bar_sprite = pygame.transform.scale(self.SPRITES.menu_bar_blue_pokemon, (cell_w - 40, 40))
-            else:
-                bar_sprite = pygame.transform.scale(self.SPRITES.menu_bar_pokemon, (cell_w - 40, 40))
-            
-            screen.blit(bar_sprite, (cell_x, cell_y))
-            
-            # Render text centered on the bar
-            text_surface = self.font.render(option, True, (255, 255, 255))
-            text_rect = text_surface.get_rect()
-            text_rect.center = (cell_x + (cell_w - 40) // 2, cell_y + 20)
+            # Draw text with larger, darker color
+            text_surface = self.font.render(option, True, (50, 50, 50))
+            text_rect = text_surface.get_rect(midleft=(cell_x, cell_y))
             screen.blit(text_surface, text_rect)
+            
+            # Draw arrow for selected option
+            if index == self.selected_option:
+                arrow_rect = self.choice_arrow.get_rect()
+                arrow_rect.midright = (cell_x - 15, cell_y)
+                screen.blit(self.choice_arrow, arrow_rect)
 
     def handle_input_menu(self):
         for event in pygame.event.get():
