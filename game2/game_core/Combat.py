@@ -2,6 +2,7 @@ import pygame
 from game_core.Screen import Screen
 from game_core.Sprites import Sprites
 from game_core.Settings import Settings
+from game_core.Combat_menu import Combat_menu
 
 
 class Combat:
@@ -9,6 +10,7 @@ class Combat:
         self.SCREEN = screen
         self.SPRITES = sprites
         self.SETTINGS = settings
+        self.MENU = Combat_menu(screen, sprites, settings)
         self.clock = pygame.time.Clock()
         self.framerate = 60
         self.screen_w, self.screen_h = self.SCREEN.display.get_size()
@@ -24,64 +26,68 @@ class Combat:
         pokemon_path = self.SPRITES.assets_root / f"Data/Pokemon_Sprites/back/{self.pokemon1_id}.png"
         pokemon_surface = pygame.image.load(str(pokemon_path))
         self.player_sprite = pygame.transform.scale(pokemon_surface, (200, 200))
-
+        self.player_rect = self.player_sprite.get_rect()
+   
     def run_combat(self):
+        self._reset_state()
+
         running = True
         while running:
             dt_ms = self.clock.tick(self.framerate)
-
-            if self._handle_events():
+            
+            # Handle input only once per frame
+            menu_action = self.MENU.handle_input_menu()
+            if menu_action == "QUIT":
                 return "QUIT"
+            elif menu_action:
+                print(f"{menu_action} selected")
 
             self._update_trainer(dt_ms)
             self._render_frame()
 
-    def _handle_events(self) -> bool:
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT:
-                return True
-            if event.type == pygame.KEYDOWN and event.key == pygame.K_ESCAPE:
-                return True
-        return False
+    def _reset_state(self) -> None:
+        self.trainer_x = 80
+        self.trainer_left_screen = False
+        self.combat_start_time = pygame.time.get_ticks()
 
     def _render_frame(self):
         self._render_terrain()
         self._render_trainer()
-        self._render_pokemon1()
-        self._render_message_box()
+        self._render_pokemon()
+        self.MENU.display_combat_menu()
         pygame.display.flip()
 
     def _render_terrain(self):
-        self.SCREEN.display.blit(self.SPRITES.forest_background, (0, 0))
-
-    def _render_message_box(self):
-        box_h = self.SPRITES.bottom_message_box.get_height()
-        self.SCREEN.display.blit(self.SPRITES.bottom_message_box, (0, self.screen_h - box_h))
+        # Scale background to fit screen properly
+        background = pygame.transform.scale(self.SPRITES.forest_background, (self.screen_w, self.screen_h))
+        self.SCREEN.display.blit(background, (0, 0))
 
     def _render_trainer(self):
-            box_h = self.SPRITES.bottom_message_box.get_height()
-            rect = self.trainer_sprite.get_rect()
-            rect.bottomleft = (int(self.trainer_x), self.screen_h - box_h)
-            self.SCREEN.display.blit(self.trainer_sprite, rect)
+        if self.trainer_left_screen or not self.trainer_sprite:
+            return
+
+        box_h = self.SPRITES.bottom_message_box.get_height()
+        rect = self.trainer_sprite.get_rect()
+        # Position trainer on the ground, above the message box
+        rect.bottomleft = (int(self.trainer_x), self.screen_h - box_h)
+        self.SCREEN.display.blit(self.trainer_sprite, rect)
 
     def _update_trainer(self, dt_ms: int) -> None:
-        if self.trainer_left_screen:
-            return
+        if self.trainer_left_screen or not self.trainer_sprite:
+              return
 
         elapsed = pygame.time.get_ticks() - self.combat_start_time
         if elapsed >= self.trainer_slide_delay:
             delta = self.trainer_slide_speed * (dt_ms / 1000.0)
             self.trainer_x -= delta
             if self.trainer_x + self.trainer_sprite.get_width() <= 0:
-                self.trainer_left_screen = True 
-            
-    def _render_pokemon1(self):
+                self.trainer_left_screen = True
+
+    def _render_pokemon(self):
         if not self.trainer_left_screen:
             return
 
         box_h = self.SPRITES.bottom_message_box.get_height()
-        x = 150
-        y = self.screen_h - box_h - self.player_sprite.get_height()
-        self.SCREEN.display.blit(self.player_sprite, (x, y))
-            
-        
+        # Position player's pokemon on the left side, above the message box
+        self.player_rect.bottomleft = (100, self.screen_h - box_h - 10)
+        self.SCREEN.display.blit(self.player_sprite, self.player_rect)
