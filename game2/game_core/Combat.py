@@ -22,11 +22,46 @@ class Combat:
         self.trainer_slide_speed = 320   # px per second
         self.combat_start_time = pygame.time.get_ticks()
         self.trainer_left_screen = False
-
         pokemon_path = self.SPRITES.assets_root / f"Data/Pokemon_Sprites/back/{self.pokemon1_id}.png"
         pokemon_surface = pygame.image.load(str(pokemon_path))
         self.player_sprite = pygame.transform.scale(pokemon_surface, (200, 200))
         self.player_rect = self.player_sprite.get_rect()
+
+        # Build a minimal player stats dict (level, current/max hp, exp)
+        # Try to read base HP and name from Pokedex.json; otherwise fallback to defaults
+        self.player_stats = {
+            "id": self.pokemon1_id,
+            "name": f"#{self.pokemon1_id}",
+            "level": 5,
+            "current_hp": None,
+            "max_hp": None,
+            "exp": 0,
+            "exp_to_next": 100,
+        }
+        try:
+            import json
+            pokedex_path = self.SPRITES.assets_root / "Data/Pokedex.json"
+            if pokedex_path.exists():
+                with open(pokedex_path, "r", encoding="utf-8") as f:
+                    pokedex = json.load(f)
+                # find entry by numeric 'num' field
+                for key, val in pokedex.items():
+                    try:
+                        if int(val.get("num", -1)) == int(self.pokemon1_id):
+                            self.player_stats["name"] = val.get("name", key)
+                            base_hp = val.get("baseStats", {}).get("hp")
+                            if base_hp:
+                                # naive max hp: use base hp as max (simple placeholder)
+                                self.player_stats["max_hp"] = int(base_hp)
+                                self.player_stats["current_hp"] = int(base_hp)
+                            break
+                    except Exception:
+                        continue
+        except Exception:
+            # if anything fails, keep placeholders
+            if self.player_stats["max_hp"] is None:
+                self.player_stats["max_hp"] = 10
+                self.player_stats["current_hp"] = 10
    
     def run_combat(self):
         self._reset_state()
@@ -54,6 +89,11 @@ class Combat:
         self._render_terrain()
         self._render_trainer()
         self._render_pokemon()
+        # provide current player stats to the menu UI (safe copy)
+        try:
+            self.MENU.player_stats = dict(self.player_stats)
+        except Exception:
+            self.MENU.player_stats = None
         self.MENU.display_combat_menu()
         pygame.display.flip()
 
@@ -87,7 +127,6 @@ class Combat:
         if not self.trainer_left_screen:
             return
 
-        # Position player's pokemon on the left ground platform
-        # Lower the pokemon a bit more to stand properly on the ground
+
         self.player_rect.midbottom = (260, 550)
         self.SCREEN.display.blit(self.player_sprite, self.player_rect)
