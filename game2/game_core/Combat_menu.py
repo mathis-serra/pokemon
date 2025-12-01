@@ -34,7 +34,7 @@ class Combat_menu:
             status_surf = self.SPRITES.player_pokemon_status
             status_rect = status_surf.get_rect()
             # Align bottom-left inside the message box with a small margin
-            status_rect.bottomleft = (760, 500 )
+            status_rect.bottomright = (760, 500 )
             screen.blit(status_surf, status_rect)
 
             # Fetch stats provided by Combat (if any)
